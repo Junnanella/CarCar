@@ -15,7 +15,6 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 // import Sales components
 
 function App(props) {
-  console.log("App props:", props);
   const { manufacturers } = props.manufacturers;
   // grab models from props.vehicles, and rename to vehicles
   const { models: vehicles } = props.vehicles;

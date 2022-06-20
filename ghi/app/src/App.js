@@ -16,6 +16,9 @@ import AutomobileForm from "./AutomobileForm";
 
 function App(props) {
   const { manufacturers } = props.manufacturers;
+  // grab models from props.vehicles, and rename to vehicles
+  const { models: vehicles } = props.vehicles;
+
   return (
     <BrowserRouter>
       <Nav />
@@ -27,7 +30,10 @@ function App(props) {
             element={<ManufacturerList manufacturers={manufacturers} />}
           />
           <Route path="manufacturers/new/" element={<ManufacturerForm />} />
-          <Route path="vehicles/" element={<VehicleList />} />
+          <Route
+            path="vehicles/"
+            element={<VehicleList vehicles={vehicles} />}
+          />
           <Route path="vehicles/new/" element={<VehicleForm />} />
           <Route path="automobiles/" element={<AutomobileList />} />
           <Route path="automobiles/new/" element={<AutomobileForm />} />

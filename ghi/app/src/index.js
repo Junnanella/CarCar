@@ -2,9 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
+// Load Data functions
 const loadManufacturers = async () => {
   // fetch data from api
   const response = await fetch("http://localhost:8100/api/manufacturers/");
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const loadVehicles = async () => {
+  const response = await fetch("http://localhost:8100/api/models/");
   const responseJson = await response.json();
   return responseJson;
 };
@@ -14,11 +21,12 @@ const main = async () => {
   // wait for loading functions to return data
   // then pass them in as props to App.js in the render
   const manufacturers = await loadManufacturers();
+  const vehicles = await loadVehicles();
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
-      <App manufacturers={manufacturers} />
+      <App manufacturers={manufacturers} vehicles={vehicles} />
     </React.StrictMode>
   );
 };

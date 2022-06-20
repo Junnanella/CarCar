@@ -14,14 +14,18 @@ import AutomobileForm from "./AutomobileForm";
 
 // import Sales components
 
-function App() {
+function App(props) {
+  const { manufacturers } = props.manufacturers;
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="manufacturers/" element={<ManufacturerList />} />
+          <Route
+            path="manufacturers/"
+            element={<ManufacturerList manufacturers={manufacturers} />}
+          />
           <Route path="manufacturers/new/" element={<ManufacturerForm />} />
           <Route path="vehicles/" element={<VehicleList />} />
           <Route path="vehicles/new/" element={<VehicleForm />} />

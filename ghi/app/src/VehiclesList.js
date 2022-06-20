@@ -9,6 +9,8 @@ export default function VehicleList(props) {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Manufacturer</th>
+            <th>Picture</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +18,10 @@ export default function VehicleList(props) {
             return (
               <tr key={vehicle.id}>
                 <td>{vehicle.name}</td>
+                <td>{vehicle.manufacturer.name}</td>
+                <td>
+                  <img src={vehicle.picture_url} alt="" />
+                </td>
               </tr>
             );
           })}

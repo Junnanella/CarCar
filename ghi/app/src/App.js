@@ -3,12 +3,12 @@ import MainPage from "./MainPage";
 import Nav from "./Nav";
 
 // import Inventory components
-import ManufacturerList from "./ManufacturersList";
-import ManufacturerForm from "./ManufacturerForm";
-import VehicleList from "./VehiclesList";
-import VehicleForm from "./VehicleForm";
-import AutomobileList from "./AutomobileList";
-import AutomobileForm from "./AutomobileForm";
+import ManufacturerList from "./inventory_components/ManufacturersList";
+import ManufacturerForm from "./inventory_components/ManufacturerForm";
+import VehicleList from "./inventory_components/VehiclesList";
+import VehicleForm from "./inventory_components/VehicleForm";
+import AutomobileList from "./inventory_components/AutomobileList";
+import AutomobileForm from "./inventory_components/AutomobileForm";
 
 // import Services components
 

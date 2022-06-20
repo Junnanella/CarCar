@@ -15,9 +15,11 @@ import AutomobileForm from "./AutomobileForm";
 // import Sales components
 
 function App(props) {
+  console.log("App props:", props);
   const { manufacturers } = props.manufacturers;
   // grab models from props.vehicles, and rename to vehicles
   const { models: vehicles } = props.vehicles;
+  const { autos: automobiles } = props.automobiles;
 
   return (
     <BrowserRouter>
@@ -35,7 +37,10 @@ function App(props) {
             element={<VehicleList vehicles={vehicles} />}
           />
           <Route path="vehicles/new/" element={<VehicleForm />} />
-          <Route path="automobiles/" element={<AutomobileList />} />
+          <Route
+            path="automobiles/"
+            element={<AutomobileList automobiles={automobiles} />}
+          />
           <Route path="automobiles/new/" element={<AutomobileForm />} />
         </Routes>
       </div>

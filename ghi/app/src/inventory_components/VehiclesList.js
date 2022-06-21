@@ -1,4 +1,5 @@
 import React from "react";
+import "./VehiclesList.css";
 
 export default function VehicleList(props) {
   const { vehicles } = props;
@@ -20,7 +21,11 @@ export default function VehicleList(props) {
                 <td>{vehicle.name}</td>
                 <td>{vehicle.manufacturer.name}</td>
                 <td>
-                  <img src={vehicle.picture_url} alt="" />
+                  <img
+                    className="vehicleImage"
+                    src={vehicle.picture_url}
+                    alt=""
+                  />
                 </td>
               </tr>
             );

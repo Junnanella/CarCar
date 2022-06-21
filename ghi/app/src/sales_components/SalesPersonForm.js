@@ -1,17 +1,27 @@
 import React from "react";
 
 export default class CreateSalesPerson extends React.Component {
-  // 🐰🐰🐰 Uncomment code below 🐰🐰🐰
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     employee_name: "",
-  //     employee_num: ""
-  //   }
-  // this.handleChangeEmployeeName = this.handleChangeEmployeeName.bind(this),
-  // this.handleChangeEmployeeNum = this.handleChangeEmployeeNum.bind(this)
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      employee_name: "",
+      employee_num: "",
+    };
+    this.handleChangeEmployeeName = this.handleChangeEmployeeName.bind(this);
+    this.handleChangeEmployeeNum = this.handleChangeEmployeeNum.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  async handleSubmit(event) {
+    event.preventDefault();
+    const data = {
+      employee_name: this.state.employee_name,
+      employee_num: this.state.employee_num,
+    };
+    console.log("🐰🐰🐰", data);
+  }
+
+  // 🐰🐰🐰 Uncomment code below to replace the above handleSubmit🐰🐰🐰
   // async handleSubmit(event) {
   //   event.preventDefault();
   //   const data = {
@@ -36,18 +46,15 @@ export default class CreateSalesPerson extends React.Component {
   //   }
   // }
 
-  // handleChangeEmployeeName(event) {
-  //   const value = event.target.value;
-  //   this.setState({ eomployee_name: value });
-  // }
+  handleChangeEmployeeName(event) {
+    const value = event.target.value;
+    this.setState({ employee_name: value });
+  }
 
-  // handleChangeEmployeeNum(event) {
-  //   const value = event.target.value;
-  //   this.setState({ eomployee_num: value });
-  // }
-
-  //  🐰🐰🐰 Add the handle Change methods to form onSubmit🐰🐰🐰
-  //  🐰🐰🐰 Add handle change to onChange and value in inputs 🐰🐰🐰
+  handleChangeEmployeeNum(event) {
+    const value = event.target.value;
+    this.setState({ employee_num: value });
+  }
 
   render() {
     return (
@@ -55,9 +62,11 @@ export default class CreateSalesPerson extends React.Component {
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Add a Sales Person</h1>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-floating mb-3">
                 <input
+                  onChange={this.handleChangeEmployeeName}
+                  value={this.employee_name}
                   placeholder="Employee Name"
                   required
                   type="text"
@@ -69,6 +78,8 @@ export default class CreateSalesPerson extends React.Component {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  onChange={this.handleChangeEmployeeNum}
+                  value={this.employee_num}
                   placeholder="Employee Num"
                   required
                   type="text"

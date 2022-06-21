@@ -14,7 +14,7 @@ class AutomobileVO(models.Model):
 class SalesPerson(models.Model):
     employee_name = models.CharField(max_length= 100)
     employee_num = models.PositiveSmallIntegerField(null=False, blank=False, unique=True)
-    sales = models.ManyToManyField('SalesRecord', blank=True)
+    # sales = models.ManyToManyField('SalesRecord', blank=True)
 
     def __str__(self):
         return f"{self.employee_name}"

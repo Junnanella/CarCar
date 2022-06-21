@@ -1,7 +1,7 @@
 import React from "react";
 
-export default class SalesPersonForm extends React.Component {
+export default class CreateSalesPerson extends React.Component {
   render() {
-    return <h1>Test Sale Person Form</h1>;
+    return <h1>Test Sales Person Form</h1>;
   }
 }

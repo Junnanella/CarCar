@@ -110,7 +110,7 @@ function Nav() {
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="salesrecord/new"
+                  to="sales_record/new"
                 >
                   Create Sales Record
                 </NavLink>

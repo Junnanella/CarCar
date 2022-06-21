@@ -23,48 +23,62 @@ function Nav() {
             <NavLink className="nav-link active" aria-current="page" to="/">
               Home
             </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="manufacturers/"
-            >
-              Manufacturers
-            </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="manufacturers/new/"
-            >
-              Add Manufacturer
-            </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="vehicles/"
-            >
-              Vehicle Models
-            </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="vehicles/new/"
-            >
-              Add Vehicle Model
-            </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="automobiles/"
-            >
-              Automobiles
-            </NavLink>
-            <NavLink
-              className="nav-link active"
-              aria-current="page"
-              to="automobiles/new/"
-            >
-              Add Automobile
-            </NavLink>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Inventory
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="manufacturers/"
+                >
+                  Manufacturers
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="manufacturers/new/"
+                >
+                  Add Manufacturer
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="vehicles/"
+                >
+                  Vehicle Models
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="vehicles/new/"
+                >
+                  Add Vehicle Model
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="automobiles/"
+                >
+                  Automobiles
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="automobiles/new/"
+                >
+                  Add Automobile
+                </NavLink>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

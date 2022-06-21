@@ -16,6 +16,9 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 import CreateSalesPerson from "./sales_components/SalesPersonForm";
 import CreateCustomer from "./sales_components/PotentialCustomerForm";
 
+// 🚨🚨🚨 Import sales history class or function🚨🚨🚨
+// 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
+
 function App(props) {
   const { manufacturers } = props.manufacturers;
   // grab models from props.vehicles, and rename to vehicles

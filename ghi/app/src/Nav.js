@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+// 🚨🚨🚨 Add link for sales history
+
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -111,13 +113,6 @@ function Nav() {
                   to="salesrecord/new"
                 >
                   Create Sales Record
-                </NavLink>
-                <NavLink
-                  className="dropdown-item"
-                  aria-current="page"
-                  to="sales/"
-                >
-                  Sale Records
                 </NavLink>
               </ul>
             </li>

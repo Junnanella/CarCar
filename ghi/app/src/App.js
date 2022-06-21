@@ -13,7 +13,8 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 // import Services components
 
 // import Sales components
-import SalesPersonForm from "./sales_components/SalesPersonForm";
+import CreateSalesPerson from "./sales_components/SalesPersonForm";
+import CreateCustomer from "./sales_components/PotentialCustomerForm";
 
 function App(props) {
   const { manufacturers } = props.manufacturers;
@@ -42,7 +43,8 @@ function App(props) {
             element={<AutomobileList automobiles={automobiles} />}
           />
           <Route path="automobiles/new/" element={<AutomobileForm />} />
-          <Route path="salesperson/new/" element={<SalesPersonForm />} />
+          <Route path="salesperson/new/" element={<CreateSalesPerson />} />
+          <Route path="customer/new/" element={<CreateCustomer />} />
         </Routes>
       </div>
     </BrowserRouter>

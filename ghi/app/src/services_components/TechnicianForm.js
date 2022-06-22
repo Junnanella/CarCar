@@ -6,9 +6,17 @@ export const CreateTechnicianForm = (props) => {
     name: "",
     employee_number: "",
   });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = {
+      ...values,
+    };
+    console.log("newTechnician", data)
+  };
 
   const handleChangeName = (event) => {
-    event.persist();
     setValues((values) => ({
       ...values,
       name: event.target.value,
@@ -16,7 +24,6 @@ export const CreateTechnicianForm = (props) => {
   };
 
   const handleChangeEmployeeNumber = (event) => {
-    event.persist();
     setValues((values) => ({
       ...values,
       employee_number: event.target.value,
@@ -28,7 +35,7 @@ export const CreateTechnicianForm = (props) => {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Add a Technician</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input
                 onChange={handleChangeName}

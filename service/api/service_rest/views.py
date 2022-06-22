@@ -40,6 +40,10 @@ class ServiceEncoder(ModelEncoder):
         count = AutomobileVO.objects.filter(vin=o.vin).count()
         return {"vip": count > 0}
 
+    def get_extra_data(self, o):
+        return {"status": o.status.name}
+
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_services(request):

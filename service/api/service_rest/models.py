@@ -4,6 +4,9 @@ from django.urls import reverse
 
 # Create your models here.
 
+class Status(models.Model):
+    name = models.CharField(max_length=200)
+
 
 class AutomobileVO(models.Model):
     vin = models.CharField(unique=True,max_length=200)
@@ -29,18 +32,12 @@ class Technician(models.Model):
     def __str__(self):
         return self.name
 
-class Status(models.Model):
-    name = models.CharField(max_length=200)
-
-    class Meta:
-        verbose_name_plural = "statuses"
-
 
 class Service(models.Model):
     vin = models.CharField(unique=True,max_length=200)
     customer_name = models.CharField(max_length=200)
-    date = models.DateField(auto_now_add=True)  
-    time = models.TimeField(auto_now_add=True)  
+    date = models.DateTimeField(auto_now_add=True)  
+    time = models.DateTimeField(auto_now_add=True)  
     technician = models.ForeignKey(
         Technician, 
         related_name="services", 
@@ -51,8 +48,19 @@ class Service(models.Model):
         Status, 
         null= True,
         related_name="services", 
-        on_delete=models.PROTECT
-        )
+        on_delete=models.PROTECT,
+        default=1, 
+        ) 
+
+    def cancel(self):
+        status= Status.object.get(name="cancelled")
+        self.status= status
+        self.save()
+
+    def finish(self):
+        status= Status.object.get(name="finished")
+        self.status= status
+        self.save()        
 
     def get_api_url(self):
         return reverse("api_list_services", kwargs={"pk": self.vin})
@@ -60,10 +68,13 @@ class Service(models.Model):
     def __str__(self):
         return self.vin
 
+    class Meta:
+        verbose_name_plural = "services"
+
 
     @classmethod
     def create(cls, **kwargs):
-        kwargs["status"] = Status.objects.get(name="scheduled")
+        kwargs["status"] = Status.objects.get(name="Scheduled")
         appointment = cls(**kwargs)
         appointment.save()
         return appointment

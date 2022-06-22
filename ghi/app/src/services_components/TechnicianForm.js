@@ -6,14 +6,15 @@ export const CreateTechnicianForm = (props) => {
     name: "",
     employee_number: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  //   const [submitted, setSubmitted] = useState(false);
 
+  // 🐰🐰🐰 Rework handleSubmit when ready to tie in backend 🐰🐰🐰
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       ...values,
     };
-    console.log("newTechnician", data)
+    console.log("newTechnician", data);
   };
 
   const handleChangeName = (event) => {

@@ -59,10 +59,18 @@ def api_customer(request):
     else:
         content = json.loads(request.body)
         try:
-            customer = Customer.objects.create(**content)
-            return JsonResponse(customer, encoders=Customer, safe=False)
+            customer_name = content["customer_name"]
+            address = content["address"]
+            phone_number = content["phone_number"]
+            newCustomer = Customer.objects.create(**content)
+            return JsonResponse(
+                newCustomer, 
+                encoder=CustomerEncoder, 
+                safe=False)
         except:
-            return JsonResponse({"message": "just existing"}, status=400)
+            response = JsonResponse({"message": "Unable to create a customer"})
+            response.status_code=400
+            return response
 
 
 # need to finish view for sales record

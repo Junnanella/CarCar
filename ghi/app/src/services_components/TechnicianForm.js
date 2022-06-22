@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { createTechnician } from "./ServicesAPI";
 
 export const CreateTechnicianForm = (props) => {
   // declaring variables and setting initial states
+
   const [values, setValues] = useState({
     name: "",
     employee_number: "",
   });
-  //   const [submitted, setSubmitted] = useState(false);
+
+  const clearState = () => {
+    setValues({
+      name: "",
+      employee_number: "",
+    });
+  };
 
   // 🐰🐰🐰 Rework handleSubmit when ready to tie in backend 🐰🐰🐰
   const handleSubmit = async (event) => {
@@ -14,7 +22,8 @@ export const CreateTechnicianForm = (props) => {
     const data = {
       ...values,
     };
-    console.log("newTechnician", data);
+
+    createTechnician(data).then(clearState);
   };
 
   const handleChangeName = (event) => {

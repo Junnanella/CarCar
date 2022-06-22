@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-<<<<<<< HEAD
 
 
 from .models import Service,Technician, Status
@@ -17,6 +16,3 @@ class Techniciandmin(admin.ModelAdmin):
 class Statusdmin(admin.ModelAdmin):
     pass
 
-=======
-from .models import 
->>>>>>> main

@@ -47,7 +47,6 @@ class ServiceEncoder(ModelEncoder):
         return {"status": o.status.name}
 
 
-
 @require_http_methods(["GET", "POST"])
 def api_list_services(request):
     if request.method == "GET":

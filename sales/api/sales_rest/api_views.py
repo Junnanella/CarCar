@@ -63,13 +63,10 @@ def api_customer(request):
             address = content["address"]
             phone_number = content["phone_number"]
             newCustomer = Customer.objects.create(**content)
-            return JsonResponse(
-                newCustomer, 
-                encoder=CustomerEncoder, 
-                safe=False)
+            return JsonResponse(newCustomer, encoder=CustomerEncoder, safe=False)
         except:
             response = JsonResponse({"message": "Unable to create a customer"})
-            response.status_code=400
+            response.status_code = 400
             return response
 
 
@@ -88,15 +85,28 @@ def api_sale_records(request):
         # JsonResponse(dictionary, encoder, safe=false)
     else:
         content = json.loads(request.body)
-        content = {
-            **content,
-            "vin": AutomobileVO.objects.get(id=content["vin"]),
-            "sales_person": SalesPerson.objects.get(id=content["sales_person"]),
-            "customer": Customer.objects.get(id=content["customer"]),
-        }
-        records = SalesRecord.objects.create(**content)
+        try: 
+            automobile_vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=automobile_vin)
+            sales_person_name = content["sales_person"]
+            sales_person = SalesPerson.objects.get(employee_name=sales_person_name)
+            customer_name = content["customer"]
+            customer = Customer.objects.get(customer_name=customer_name)
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid Automobile VIN"}
+            )
+
+        newSaleRecord = SalesRecord.objects.create(
+            automobile = automobile,
+            sales_person = sales_person,
+            customer = customer,
+            price = content["price"]
+        )
+
         return JsonResponse(
-            records,
+            newSaleRecord,
             encoder=SalesRecordEncoder,
             safe=False,
         )
+

@@ -107,29 +107,29 @@ class AppointmentsForm extends React.Component {
                         <h1>Create a service appointment</h1>
                         <form onSubmit={this.handleSubmit} id="create-service-form">
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleChangeVin} required placeholder="Manufacturer" type="text"
-                                    id="manufacturer" name="manufacturer" className="form-control" value={this.state.manufacturer} />
-                                <label htmlFor="manufacturer">Manufacturer</label>
+                                <input onChange={this.handleChangeVin} required placeholder="VIN" type="text"
+                                    id="vin" name="vin" className="form-control" value={this.state.vin} />
+                                <label htmlFor="vin">VIN</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleChangeCustomerName} required placeholder="Model Nam" type="text"
-                                    id="model_name" name="model_name" className="form-control" value={this.state.model_name} />
-                                <label htmlFor="model_name">Model Name</label>
+                                <input onChange={this.handleChangeCustomerName} required placeholder="Customer Name" type="text"
+                                    id="customer_name" name="customer_name" className="form-control" value={this.state.customer_name} />
+                                <label htmlFor="customer_name">Customer Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleChangeDate} required placeholder="Model Color" type="text"
-                                    id="model_color" name="model_color" className="form-control" value={this.state.model_color} />
-                                <label htmlFor="model_color">Model Color</label>
+                                <input onChange={this.handleChangeDate} required placeholder="Date" type="date"
+                                    id="date" name="date" className="form-control" value={this.state.date} />
+                                <label htmlFor="date">Date</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleChangeTime} required placeholder="Picture Url" type="text"
-                                    id="picture_url" name="picture_url" className="form-control" value={this.state.picture_url} />
-                                <label htmlFor="picture_url">Picture Url</label>
+                                <input onChange={this.handleChangeTime} required placeholder="Time" type="time"
+                                    id="time" name="time" className="form-control" value={this.state.time} />
+                                <label htmlFor="time">Time</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleChangeReason} required placeholder="Picture Url" type="text"
-                                    id="picture_url" name="picture_url" className="form-control" value={this.state.picture_url} />
-                                <label htmlFor="picture_url">Picture Url</label>
+                                <input onChange={this.handleChangeReason} required placeholder="Reason" type="text"
+                                    id="reason" name="reason" className="form-control" value={this.state.reason} />
+                                <label htmlFor="reason">Reason</label>
                             </div>
                             <div className="mb-3">
                                 <select onChange={this.handleChangeTechnician} required id="technician" name="technician" className="form-select" value={this.state.technician}>
@@ -152,4 +152,4 @@ class AppointmentsForm extends React.Component {
     }
 }
 
-export default ShoesForm;
+export default AppointmentsForm;

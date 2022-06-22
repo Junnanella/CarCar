@@ -6,9 +6,12 @@ from django.urls import reverse
 
 class Status(models.Model):
     name = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
 
 
 class AutomobileVO(models.Model):
+    import_href= models.CharField(unique= True, max_length=200)
     vin = models.CharField(unique=True,max_length=200)
     color = models.CharField(null= True, max_length=200)
     year = models.IntegerField(null=True)
@@ -69,7 +72,7 @@ class Service(models.Model):
         return self.vin
 
     class Meta:
-        verbose_name_plural = "services"
+        verbose_name_plural = "Services"
 
 
     @classmethod

@@ -11,12 +11,14 @@ from .models import AutomobileVO, Service, Technician
 class AutomobileVODEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [ 
+        "id",
         "vin"
         ]
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
+        "id",
         "name",
         "employee_number",
     ]
@@ -24,6 +26,7 @@ class TechnicianEncoder(ModelEncoder):
 class ServiceEncoder(ModelEncoder):
     model = Service
     properties = [
+        "id",
         "vin",
         "customer_name",
         "date",

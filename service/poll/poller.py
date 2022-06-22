@@ -20,6 +20,7 @@ def get_inventory():
     print(content)
     for auto in content["autos"]:
         AutomobileVO.objects.update_or_create(
+          
             vin= auto["vin"],
             defaults={"color":auto["color"],"year":auto["year"],"model":auto["model"],"vip":auto["vip"]},
         )

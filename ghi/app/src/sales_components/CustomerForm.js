@@ -56,11 +56,11 @@ export const CustomerForm = (props) => {
                 placeholder="Customer Name"
                 required
                 type="text"
-                name="customer name"
-                id="customer name"
+                name="customer_name"
+                id="customer_name"
                 className="form-control"
               />
-              <label htmlFor="customer name">Customer Name</label>
+              <label htmlFor="customer_name">Customer Name</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -82,11 +82,11 @@ export const CustomerForm = (props) => {
                 placeholder="Phone Number"
                 required
                 type="text"
-                name="phone number"
-                id="phone number"
+                name="phone_number"
+                id="phone_number"
                 className="form-control"
               />
-              <label htmlFor="phone number">PhoneNumber</label>
+              <label htmlFor="phone_number">PhoneNumber</label>
             </div>
             <button className="btn btn-primary">Add</button>
           </form>

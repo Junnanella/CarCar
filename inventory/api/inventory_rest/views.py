@@ -160,7 +160,7 @@ def api_vehicle_models(request):
                 encoder=VehicleModelEncoder,
                 safe=False,
             )
-        except:
+        except Exception as err:
             response = JsonResponse({"message": "Could not create the vehicle model"})
             response.status_code = 400
             return response

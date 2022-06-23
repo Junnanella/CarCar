@@ -51,3 +51,17 @@ export const createSalesPerson = async (data) => {
   console.log("🐰🐰🐰 New Sales Person", newSalesPerson);
   return response;
 };
+
+// export const createSalesRecord = async (data) => {
+//   const url = 'http://localhost:8090/api/salesrecord/';
+//   const fetchConfig = {
+//     method: 'post',
+//     body: JSON.stringify(data),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   };
+//   const response = await fetch(url, fetchConfig);
+//   const newSalesRecord = await response.json();
+//   return response;
+// }

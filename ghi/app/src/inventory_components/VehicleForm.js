@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createVehicle, loadManufacturers } from "./InventoryApi";
+import "./inventory.css";
 
 export const VehicleForm = (props) => {
   const [values, setValues] = useState({
@@ -9,6 +10,8 @@ export const VehicleForm = (props) => {
   });
 
   const [manufacturers, setManufacturers] = useState([]);
+
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,6 +35,7 @@ export const VehicleForm = (props) => {
       picture_url: "",
       manufacturer: "",
     });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeName = (event) => {
@@ -108,6 +112,11 @@ export const VehicleForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Vehicle Model Added to System
+            </div>
+          )}
         </div>
       </div>
     </div>

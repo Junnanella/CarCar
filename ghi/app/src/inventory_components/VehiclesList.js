@@ -1,5 +1,5 @@
 import React from "react";
-import "./VehiclesList.css";
+import "./inventory.css";
 
 export default function VehicleList(props) {
   const { vehicles } = props;

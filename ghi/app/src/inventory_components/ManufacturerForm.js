@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { createManufacturer } from "./InventoryApi";
+import "./inventory.css";
 
 export const ManufacturerForm = (props) => {
   const [values, setValues] = useState({
     name: "",
   });
+
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,6 +19,7 @@ export const ManufacturerForm = (props) => {
     setValues({
       name: "",
     });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeName = (event) => {
@@ -46,6 +50,11 @@ export const ManufacturerForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Manufacturer Created
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,10 @@
+.vehicleImage {
+    height: 150px;
+}
+
+.successfully_submitted {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}

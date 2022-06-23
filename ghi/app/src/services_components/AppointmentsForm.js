@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AppointmentsForm extends React.Component {
+class CreateAppointmentForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -136,7 +136,7 @@ class AppointmentsForm extends React.Component {
                                     <option value="">Choose a technician</option>
                                     {this.state.technician.map(technician => {
                                         return (
-                                            <option key={technician.id} value={technician.id}>
+                                            <option key={technician.employee_number} value={technician.employee_number}>
                                                 {technician.name}
                                             </option>
                                         );
@@ -152,4 +152,4 @@ class AppointmentsForm extends React.Component {
     }
 }
 
-export default AppointmentsForm;
+export default CreateAppointmentForm;

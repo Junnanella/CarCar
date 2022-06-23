@@ -13,7 +13,7 @@ export const loadVehicles = async () => {
 export const loadAutomobiles = async () => {
   const response = await fetch("http://localhost:8100/api/automobiles/");
   const responseJson = await response.json();
-  return responseJson;
+  return responseJson.autos;
 };
 
 export const createManufacturer = async (data) => {

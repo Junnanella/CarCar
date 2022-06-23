@@ -20,9 +20,7 @@ import { CustomerForm } from "./sales_components/CustomerForm";
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
 
 function App(props) {
-  const { manufacturers } = props.manufacturers;
-  const { models: vehicles } = props.vehicles;
-  const { autos: automobiles } = props.automobiles;
+  const { manufacturers, vehicles, automobiles } = props;
 
   return (
     <BrowserRouter>

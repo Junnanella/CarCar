@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createAutomobiles, loadVehicles } from "./InventoryApi";
+import "./inventory.css";
 
 export const AutomobileForm = (props) => {
   const [values, setValues] = useState({
@@ -10,6 +11,8 @@ export const AutomobileForm = (props) => {
   });
 
   const [models, setModels] = useState([]);
+
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -35,6 +38,7 @@ export const AutomobileForm = (props) => {
       vin: "",
       model: "",
     });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeColor = (event) => {
@@ -131,6 +135,11 @@ export const AutomobileForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Automobile Added to Inventory
+            </div>
+          )}
         </div>
       </div>
     </div>

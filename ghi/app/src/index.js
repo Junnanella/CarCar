@@ -40,6 +40,9 @@ const loadSalesRecords = async () => {
   const responseJson = await response.json();
   return responseJson;
 };
+import { loadManufacturers } from "./inventory_components/InventoryApi";
+import { loadVehicles } from "./inventory_components/InventoryApi";
+import { loadAutomobiles } from "./inventory_components/InventoryApi";
 
 // invoke loading functions through main so they are all in one place
 const main = async () => {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createTechnician } from "./ServicesAPI";
+import "./service.css";
 
 export const CreateTechnicianForm = (props) => {
   // declaring variables and setting initial states
@@ -9,12 +10,7 @@ export const CreateTechnicianForm = (props) => {
     employee_number: "",
   });
 
-  const clearState = () => {
-    setValues({
-      name: "",
-      employee_number: "",
-    });
-  };
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +18,12 @@ export const CreateTechnicianForm = (props) => {
       ...values,
     };
 
-    createTechnician(data).then(clearState);
+    await createTechnician(data);
+    setValues({
+      name: "",
+      employee_number: "",
+    });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeName = (event) => {
@@ -73,6 +74,11 @@ export const CreateTechnicianForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Technician Added to System
+            </div>
+          )}
         </div>
       </div>
     </div>

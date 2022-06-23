@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import ManufacturerList from "./inventory_components/ManufacturersList";
 import { ManufacturerForm } from "./inventory_components/ManufacturerForm";
 import VehicleList from "./inventory_components/VehiclesList";
-import VehicleForm from "./inventory_components/VehicleForm";
+import { VehicleForm } from "./inventory_components/VehicleForm";
 import AutomobileList from "./inventory_components/AutomobileList";
 import AutomobileForm from "./inventory_components/AutomobileForm";
 

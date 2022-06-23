@@ -8,14 +8,6 @@ export const CustomerForm = (props) => {
     phone_number: "",
   });
 
-  const clearState = () => {
-    setValues({
-      customer_name: "",
-      address: "",
-      phone_number: "",
-    });
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -23,7 +15,11 @@ export const CustomerForm = (props) => {
     };
 
     await createCustomer(data);
-    clearState();
+    setValues({
+      customer_name: "",
+      address: "",
+      phone_number: "",
+    });
   };
 
   const handleChangeCustomerName = (event) => {

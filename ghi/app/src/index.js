@@ -21,6 +21,25 @@ const loadAutomobiles = async () => {
   const responseJson = await response.json();
   return responseJson;
 };
+const loadSalesPerson = async () => {
+  // fetch data from api
+  const response = await fetch("http://localhost:8090/api/salesperson/");
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const loadCustomers = async () => {
+  // fetch data from api
+  const response = await fetch("http://localhost:8090/api/customers/");
+  const responseJson = await response.json();
+  return responseJson;
+};
+const loadSalesRecords = async () => {
+  // fetch data from api
+  const response = await fetch("http://localhost:8090/api/salesrecord/");
+  const responseJson = await response.json();
+  return responseJson;
+};
 
 // invoke loading functions through main so they are all in one place
 const main = async () => {
@@ -29,6 +48,9 @@ const main = async () => {
   const manufacturers = await loadManufacturers();
   const vehicles = await loadVehicles();
   const autos = await loadAutomobiles();
+  const salespersons = await loadSalesPerson();
+  const customers = await loadCustomers();
+  const salesrecords = await loadSalesRecords();
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
@@ -37,6 +59,9 @@ const main = async () => {
         manufacturers={manufacturers}
         vehicles={vehicles}
         automobiles={autos}
+        salespersons={salespersons}
+        customers={customers}
+        salesrecords={salesrecords}
       />
     </React.StrictMode>
   );

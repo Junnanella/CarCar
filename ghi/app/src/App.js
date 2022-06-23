@@ -16,6 +16,7 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 import CreateSalesPerson from "./sales_components/SalesPersonForm";
 import CreateCustomer from "./sales_components/PotentialCustomerForm";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
+import SalesHistory from "./sales_components/SalesHistory";
 
 // 🚨🚨🚨 Import sales history class or function🚨🚨🚨
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
@@ -25,7 +26,11 @@ function App(props) {
   // grab models from props.vehicles, and rename to vehicles
   const { models: vehicles } = props.vehicles;
   const { autos: automobiles } = props.automobiles;
+  const { salespersons: salespersons } = props.salespersons;
+  const { customers: customers } = props.customers;
+  const { salesrecords: salesrecords} = props.salesrecords;
 
+  // console.log(props.salespersons)
   return (
     <BrowserRouter>
       <Nav />
@@ -49,7 +54,11 @@ function App(props) {
           <Route path="automobiles/new/" element={<AutomobileForm />} />
           <Route path="salesperson/new/" element={<CreateSalesPerson />} />
           <Route path="customer/new/" element={<CreateCustomer />} />
-          <Route path="sales_record/new/" element={<CreateSalesRecord />} />
+          <Route path='sales_record' >
+            {/* <Route path="sales_record/new/" element={<CreateSalesRecord />} /> */}
+            <Route path="new" element={<CreateSalesRecord />} />
+            <Route path="history" element={<SalesHistory salespersons={props.salespersons} salesrecords={props.salesrecords} />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

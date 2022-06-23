@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
-
-// import Inventory components
 import ManufacturerList from "./inventory_components/ManufacturersList";
 import ManufacturerForm from "./inventory_components/ManufacturerForm";
 import VehicleList from "./inventory_components/VehiclesList";
@@ -13,19 +11,18 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 // import Services components
 
 // import Sales components
-import CreateSalesPerson from "./sales_components/SalesPersonForm";
-import CreateCustomer from "./sales_components/PotentialCustomerForm";
+import { SalesPersonForm } from "./sales_components/SalesPersonForm";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
 import { CreateTechnicianForm } from "./services_components/TechnicianForm";
 import CreateAppointmentForm from "./services_components/AppointmentsForm";
 import ServiceAppointmentList from "./services_components/AppointmentsList";
+import { CustomerForm } from "./sales_components/CustomerForm";
 
 // 🚨🚨🚨 Import sales history class or function🚨🚨🚨
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
 
 function App(props) {
   const { manufacturers } = props.manufacturers;
-  // grab models from props.vehicles, and rename to vehicles
   const { models: vehicles } = props.vehicles;
   const { autos: automobiles } = props.automobiles;
 
@@ -50,8 +47,8 @@ function App(props) {
             element={<AutomobileList automobiles={automobiles} />}
           />
           <Route path="automobiles/new/" element={<AutomobileForm />} />
-          <Route path="salesperson/new/" element={<CreateSalesPerson />} />
-          <Route path="customer/new/" element={<CreateCustomer />} />
+          <Route path="salesperson/new/" element={<SalesPersonForm />} />
+          <Route path="customer/new/" element={<CustomerForm />} />
           <Route path="sales_record/new/" element={<CreateSalesRecord />} />
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />
           <Route path="service_appointments/new/" element={<CreateAppointmentForm />} />

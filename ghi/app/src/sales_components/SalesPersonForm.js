@@ -1,99 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
+import { createSalesPerson } from "./SalesAPI";
 
-export default class CreateSalesPerson extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      employee_name: "",
-      employee_num: "",
-    };
-    this.handleChangeEmployeeName = this.handleChangeEmployeeName.bind(this);
-    this.handleChangeEmployeeNum = this.handleChangeEmployeeNum.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+export const SalesPersonForm = (props) => {
+  const [values, setValues] = useState({
+    employee_name: "",
+    employee_num: "",
+  });
 
-  async handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
-      employee_name: this.state.employee_name,
-      employee_num: this.state.employee_num,
+      ...values,
     };
-    console.log("🐰🐰🐰", data);
-  }
 
-  // 🐰🐰🐰 Uncomment code below to replace the above handleSubmit🐰🐰🐰
-  // async handleSubmit(event) {
-  //   event.preventDefault();
-  //   const data = {
-  //     employee_name: this.state.employee_name,
-  //     employee_num: this.state.employee_num
-  //   };
+    await createSalesPerson(data);
+    setValues({
+      employee_name: "",
+      employee_num: "",
+    });
+  };
 
-  //   const url = "http://localhost:8090/api/sales/";
-  //   const fetchConfig = {
-  //     method: "post",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   const response = await fetch(url, fetchConfig);
-  //   if (response.ok) {
-  //     this.setState({
-  //       employee_name: "",
-  //       employee_num: "",
-  //     })
-  //   }
-  // }
+  const handleChangeEmployeeName = (event) => {
+    setValues({
+      ...values,
+      employee_name: event.target.value,
+    });
+  };
 
-  handleChangeEmployeeName(event) {
-    const value = event.target.value;
-    this.setState({ employee_name: value });
-  }
+  const handleChangeEmployeeNum = (event) => {
+    setValues({
+      ...values,
+      employee_num: event.target.value,
+    });
+  };
 
-  handleChangeEmployeeNum(event) {
-    const value = event.target.value;
-    this.setState({ employee_num: value });
-  }
-
-  render() {
-    return (
-      <div className="row">
-        <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4">
-            <h1>Add a Sales Person</h1>
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-floating mb-3">
-                <input
-                  onChange={this.handleChangeEmployeeName}
-                  value={this.employee_name}
-                  placeholder="Employee Name"
-                  required
-                  type="text"
-                  name="employee name"
-                  id="employee name"
-                  className="form-control"
-                />
-                <label htmlFor="employee name">Employee Name</label>
-              </div>
-              <div className="form-floating mb-3">
-                <input
-                  onChange={this.handleChangeEmployeeNum}
-                  value={this.employee_num}
-                  placeholder="Employee Num"
-                  required
-                  type="text"
-                  name="employee num"
-                  id="employee num"
-                  className="form-control"
-                />
-                <label htmlFor="employee num">Employee Number</label>
-              </div>
-              <button className="btn btn-primary">Add</button>
-            </form>
-          </div>
+  return (
+    <div className="row">
+      <div className="offset-3 col-6">
+        <div className="shadow p-4 mt-4">
+          <h1>Add a Sales Person</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleChangeEmployeeName}
+                value={values.employee_name}
+                placeholder="Employee Name"
+                required
+                type="text"
+                name="employee_name"
+                id="employee_name"
+                className="form-control"
+              />
+              <label htmlFor="employee_name">Employee Name</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleChangeEmployeeNum}
+                value={values.employee_num}
+                placeholder="Employee Number"
+                required
+                type="text"
+                name="employee_num"
+                id="employee_num"
+                className="form-control"
+              />
+              <label htmlFor="employee_num">Employee Number</label>
+            </div>
+            <button className="btn btn-primary">Add</button>
+          </form>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

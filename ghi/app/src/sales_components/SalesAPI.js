@@ -33,6 +33,21 @@ export const createCustomer = async (data) => {
   };
   const response = await fetch(url, fetchConfig);
   const newCustomer = await response.json();
-  console.log("🐰🐰🐰", newCustomer);
+  console.log("🐰🐰🐰 New Customer", newCustomer);
+  return response;
+};
+
+export const createSalesPerson = async (data) => {
+  const url = "http://localhost:8090/api/salesperson/";
+  const fetchConfig = {
+    method: "post",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(url, fetchConfig);
+  const newSalesPerson = await response.json();
+  console.log("🐰🐰🐰 New Sales Person", newSalesPerson);
   return response;
 };

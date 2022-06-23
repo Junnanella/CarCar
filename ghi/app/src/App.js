@@ -11,7 +11,7 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 // import Services components
 
 // import Sales components
-import CreateSalesPerson from "./sales_components/SalesPersonForm";
+import { SalesPersonForm } from "./sales_components/SalesPersonForm";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
 import { CreateTechnicianForm } from "./services_components/TechnicianForm";
 import { CustomerForm } from "./sales_components/CustomerForm";
@@ -45,7 +45,7 @@ function App(props) {
             element={<AutomobileList automobiles={automobiles} />}
           />
           <Route path="automobiles/new/" element={<AutomobileForm />} />
-          <Route path="salesperson/new/" element={<CreateSalesPerson />} />
+          <Route path="salesperson/new/" element={<SalesPersonForm />} />
           <Route path="customer/new/" element={<CustomerForm />} />
           <Route path="sales_record/new/" element={<CreateSalesRecord />} />
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />

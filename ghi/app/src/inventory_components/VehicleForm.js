@@ -42,7 +42,6 @@ export default class VehicleForm extends React.Component {
       },
     };
     const response = await fetch(url, fetchConfig);
-    console.log("Vehicle submit response: ", response);
     if (response.ok) {
       this.setState({
         name: "",

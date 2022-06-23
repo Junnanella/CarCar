@@ -23,7 +23,6 @@ export default class AutomobileForm extends React.Component {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       this.setState({ models: data.models });
     }
   }

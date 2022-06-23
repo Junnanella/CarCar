@@ -28,8 +28,6 @@ export default class ManufacturerForm extends React.Component {
     };
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
-      const newManufacturer = await response.json();
-      console.log(newManufacturer);
       this.setState({
         name: "",
       });

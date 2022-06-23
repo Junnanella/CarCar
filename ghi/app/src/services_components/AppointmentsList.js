@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentList() {
-    let [appointments, setAppointment] = useState([]);
+    let [services, setAppointment] = useState([]);
 
     async function fectchAppointment() {
         const res = await fetch('http://localhost:8080/api/services/');
         const newAppointment = await res.json();
-        setAppointment(newAppointment.appointment)
+        console.log(newAppointment)
+        setAppointment(newAppointment.services)
     }
     useEffect(() => {
         fectchAppointment()
     }, [])
 
     // let convertDate = new Date()
-
+console.log(services)
     return (
         <>
             <h1> Service appointments</h1>
@@ -31,16 +32,16 @@ function ServiceAppointmentList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment) => {
+                    {services.map((service) => {
                         return (
-                            <tr key={appointment.id}>
-                                <td>{appointment.vin.vin}</td>
-                                <td>{appointment.customer_name}</td>
-                                <td>{appointment.date.split("T")[0]}</td>
-                                <td>{appointment.time.split("T")[1].slice(0, 5)}</td>
-                                <td>{appointment.technician.name}</td>
-                                <td>{appointment.reason}</td>
-                                <td>{appointment.status}</td>
+                            <tr key={service.id}>
+                                <td>{service.vin}</td>
+                                <td>{service.customer_name}</td>
+                                <td>{service.date.split("T")[0]}</td>
+                                <td>{service.time.split("T")[1].slice(0, 5)}</td>
+                                <td>{service.technician.name}</td>
+                                <td>{service.reason}</td>
+                                <td>{service.status}</td>
                             </tr>
                         );
                     })}
@@ -48,7 +49,6 @@ function ServiceAppointmentList() {
             </table>
         </>
     )
-
 }
 
 export default ServiceAppointmentList;

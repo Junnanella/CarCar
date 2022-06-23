@@ -52,7 +52,7 @@ export const ManufacturerForm = (props) => {
           </form>
           {isSuccessfullySubmitted && (
             <div className="successfully_submitted">
-              New Manufacturer Created
+              New Manufacturer Added to System
             </div>
           )}
         </div>

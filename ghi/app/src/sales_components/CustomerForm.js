@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createCustomer } from "./SalesAPI";
+import "./sales.css";
 
 export const CustomerForm = (props) => {
   const [values, setValues] = useState({
@@ -7,6 +8,8 @@ export const CustomerForm = (props) => {
     address: "",
     phone_number: "",
   });
+
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,6 +23,7 @@ export const CustomerForm = (props) => {
       address: "",
       phone_number: "",
     });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeCustomerName = (event) => {
@@ -90,6 +94,11 @@ export const CustomerForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Customer Added to System
+            </div>
+          )}
         </div>
       </div>
     </div>

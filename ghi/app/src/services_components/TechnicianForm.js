@@ -16,7 +16,6 @@ export const CreateTechnicianForm = (props) => {
     });
   };
 
-  // 🐰🐰🐰 Rework handleSubmit when ready to tie in backend 🐰🐰🐰
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {

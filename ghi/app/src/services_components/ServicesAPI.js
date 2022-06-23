@@ -13,7 +13,7 @@ export const loadTechnicians = async () => {
 export const loadAutomobiles = async () => {
   const response = await fetch("http://localhost:8100/api/automobiles/");
   const responseJson = await response.json();
-  return response.automobiles;
+  return responseJson.automobiles;
 };
 
 export const createTechnician = async (data) => {

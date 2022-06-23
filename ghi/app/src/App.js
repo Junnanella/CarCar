@@ -14,7 +14,7 @@ import AutomobileForm from "./inventory_components/AutomobileForm";
 import CreateSalesPerson from "./sales_components/SalesPersonForm";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
 import { CreateTechnicianForm } from "./services_components/TechnicianForm";
-import { CreateCustomer, CustomerForm } from "./sales_components/CustomerForm";
+import { CustomerForm } from "./sales_components/CustomerForm";
 
 // 🚨🚨🚨 Import sales history class or function🚨🚨🚨
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨

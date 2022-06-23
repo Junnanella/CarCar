@@ -105,7 +105,7 @@ class CreateAppointmentForm extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="ofset-3 col-6">
+                <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
                         <h1>Create a service appointment</h1>
                         <form onSubmit={this.handleSubmit} id="create-service-form">

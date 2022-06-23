@@ -9,8 +9,8 @@ class CreateAppointmentForm extends React.Component {
             date: '',
             time: '',
             reason: '',
-            technician: [],
-           
+            technician: '',
+            technicians: [],  
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,26 +20,26 @@ class CreateAppointmentForm extends React.Component {
         this.handleChangeTime = this.handleChangeTime.bind(this);
         this.handleChangeReason = this.handleChangeReason.bind(this);
         this.handleChangeTechnician = this.handleChangeTechnician.bind(this);
-       
+        
     }
-
+    
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/models/';
+        const url = 'http://localhost:8080/api/technician/';
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            this.setState({ models: data.models });
+            this.setState({ technicians: data.technicians });
         }
     }
-
+    
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-        delete data.models;
+        delete data.technicians;
         console.log(data);
         console.log("hello")
-
-        const servicesUrl = 'http://localhost:8080/api/services/';
+        
+        const technicianUrl = 'http://localhost:8080/api/services/';
         const fetchConfig = {
             method: 'post',
             body: JSON.stringify(data),
@@ -47,13 +47,13 @@ class CreateAppointmentForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
-
-        const response = await fetch(servicesUrl, fetchConfig);
+        
+        const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
             const newservice = await response.json();
             console.log(newservice)
             console.log("HIHIHI")
-
+            
             const cleared = {
                 vin: '',
                 customer_name: '',
@@ -61,49 +61,52 @@ class CreateAppointmentForm extends React.Component {
                 time: '',
                 reason: '',
                 technician: '',
-                status: '',
+                
             };
             this.setState(cleared);
         } else {
             console.error(response)
         }
     }
-
+    
     handleChangeVin(event) {
         const value = event.target.value;
         this.setState({ vin: value });
     }
-
+    
     handleChangeCustomerName(event) {
         const value = event.target.value;
         this.setState({ customer_name: value });
     }
-
+    
     handleChangeDate(event) {
         const value = event.target.value;
         this.setState({ date: value });
     }
-
+    
     handleChangeTime(event) {
         const value = event.target.value;
         this.setState({ time: value });
     }
-
+    
     handleChangeReason(event) {
         const value = event.target.value;
         this.setState({ reason: value });
     }
     handleChangeTechnician(event) {
         const value = event.target.value;
+        console.log(value)
         this.setState({ technician: value });
     }
+    
 
 
+    
     render() {
         return (
             <div className="row">
                 <div className="ofset-3 col-6">
-                    <div className="card shadow">
+                    <div className="shadow p-4 mt-4">
                         <h1>Create a service appointment</h1>
                         <form onSubmit={this.handleSubmit} id="create-service-form">
                             <div className="form-floating mb-3">
@@ -133,10 +136,10 @@ class CreateAppointmentForm extends React.Component {
                             </div>
                             <div className="mb-3">
                                 <select onChange={this.handleChangeTechnician} required id="technician" name="technician" className="form-select" value={this.state.technician}>
-                                    <option value="">Choose a technician</option>
-                                    {this.state.technician.map(technician => {
+                                    <option >Choose a technician</option>
+                                    {this.state.technicians.map(technician => {
                                         return (
-                                            <option key={technician.employee_number} value={technician.employee_number}>
+                                            <option key={technician.id} value={technician.id}>
                                                 {technician.name}
                                             </option>
                                         );

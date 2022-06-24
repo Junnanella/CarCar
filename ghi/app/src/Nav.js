@@ -126,7 +126,7 @@ function Nav() {
                   aria-current="page"
                   to="sales_record/history"
                 >
-                  Sales History
+                  Sales Person History
                 </NavLink>
 
               </ul>

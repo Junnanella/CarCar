@@ -149,6 +149,7 @@ def api_list_technician(request):
             encoder=TechnicianEncoder,
             safe=False,
         )    
+
 @require_http_methods(["GET","DELETE"])
 def api_detail_technician(request, pk):
     if request.method == "GET":
@@ -160,5 +161,37 @@ def api_detail_technician(request, pk):
         )
     else:
         count, _ = Technician.objects.filter(id=pk).delete()
+
         return JsonResponse({"deleted": count > 0})
 
+
+@require_http_methods(["PUT"])
+def api_cancel_appointment(request,vin):
+    appointment = Service.objects.get(vin=vin)
+    appointment.cancel()
+    return JsonResponse(
+        appointment,
+        encoder=ServiceEncoder,
+        safe=False,
+    )
+
+
+@require_http_methods(["PUT"])
+def api_finish_appointment(request,vin):
+    appointment = Service.objects.get(vin=vin)
+    appointment.finish()
+    return JsonResponse(
+        appointment,
+        encoder=ServiceEncoder,
+        safe=False,
+    )
+
+@require_http_methods(["GET","DELETE"])
+def api_history_view (request,vin):
+    service = Service.objects.filter(vin=vin) 
+    return JsonResponse(
+            service,
+            encoder=ServiceEncoder,
+            safe=False,
+        )
+    

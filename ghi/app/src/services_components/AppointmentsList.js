@@ -1,18 +1,49 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentList() {
-    let [appointments, setAppointment] = useState([]);
+    let [services, setAppointment] = useState([]);
 
-    async function fectchAppointment() {
-        const res = await fetch('http://localhost:8080/api/services/');
-        const newAppointment = await res.json();
-        setAppointment(newAppointment.appointment)
-    }
     useEffect(() => {
+        async function fectchAppointment() {
+            const response = await fetch('http://localhost:8080/api/services/');
+            if (response.ok) {
+                const newAppointment = await response.json();
+                setAppointment(newAppointment.services)
+            }
+        }
         fectchAppointment()
     }, [])
 
-    // let convertDate = new Date()
+    console.log(services)
+
+
+    // function Cancel(service) {
+    //     const url = `http://localhost:8080/api/services/${service.vin}/cancel`;
+    //     const fectchConfig = {
+    //         method: "put",
+    //         body: JSON.stringify(service),
+    //         headers: {
+    //             'Content-Type':'application/json',
+    //         }
+    //     }
+    //     const response = fetch(url,fectchConfig)
+    //         console.log("hi",response)
+
+    // }
+
+    // function Finish(service) {
+    //     const url = `http://localhost:8080/api/services/${service.vin}/finish`;
+    //     const fectchConfig = {
+    //         method: "put",
+    //         body: JSON.stringify(service),
+    //         headers: {
+    //             'Content-Type':'application/json',
+    //         }
+    //     }
+    //     const response = fetch(url,fectchConfig)
+    //         console.log("hi",response)
+    // }
+
 
     return (
         <>
@@ -24,23 +55,28 @@ function ServiceAppointmentList() {
                         <th>Customer Name</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>VIN</th>
                         <th>Technician</th>
                         <th>Reason</th>
-                        <th>Status</th>
+                        <th>VIP</th>
+                        {/* <th>Status</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment) => {
+                    {services.map((service) => {
                         return (
-                            <tr key={appointment.id}>
-                                <td>{appointment.vin.vin}</td>
-                                <td>{appointment.customer_name}</td>
-                                <td>{appointment.date.split("T")[0]}</td>
-                                <td>{appointment.time.split("T")[1].slice(0, 5)}</td>
-                                <td>{appointment.technician.name}</td>
-                                <td>{appointment.reason}</td>
-                                <td>{appointment.status}</td>
+                            <tr key={service.id}>
+                                <td>{service.vin}</td>
+                                <td>{service.customer_name}</td>
+                                <td>{service.date.split("T")[0]}</td>
+                                <td>{service.time.split("T")[1].slice(0, 5)}</td>
+                                <td>{service.technician.name}</td>
+                                <td>{service.reason}</td>
+                                <td>{(service.vip) ? "False" : "True"}</td>
+                                {/* <td>
+                                    <button onClick={() => Cancel(service)} className="btn btn-danger"> Cancel</button>
+                                    <button onClick={() => Finish(service)} className="btn btn-success"> Finish</button>
+                                </td> */}
+
                             </tr>
                         );
                     })}
@@ -48,7 +84,6 @@ function ServiceAppointmentList() {
             </table>
         </>
     )
-
 }
 
-export default ServiceAppointmentList;
+export default ServiceAppointmentList; 

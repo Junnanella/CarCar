@@ -3,6 +3,7 @@ import "./inventory.css";
 
 export default function VehicleList(props) {
   const { vehicles } = props;
+
   return (
     <div>
       <h2>Vehicles</h2>
@@ -15,7 +16,7 @@ export default function VehicleList(props) {
           </tr>
         </thead>
         <tbody>
-          {vehicles.map((vehicle) => {
+          {vehicles.models.map((vehicle) => {
             return (
               <tr key={vehicle.id}>
                 <td>{vehicle.name}</td>

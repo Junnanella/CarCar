@@ -5,9 +5,9 @@ import React from "react";
 export default class SalesRecordForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state= {
-      automobile: "",
-      automobiles:[],
+    this.state = {
+      auto: "",
+      autos: [],
       sales_person: "",
       sales_persons: [],
       customer: "",
@@ -26,113 +26,153 @@ export default class SalesRecordForm extends React.Component {
       fetch('http://localhost:8090/api/salesperson/'),
       fetch('http://localhost:8090/api/customers/')
     ])
-    .then(
-      ([automobile, sales_person, customers]) => {
-        return Promise.all([
-          automobile.json(),
-          sales_person.json(),
-          customers.json()
-        ])
-      }
-    )
-    .then(
-      ([automobile, sales_persons, customers]) => {
-        this.setState(automobile)
-        this.setState(sales_persons)
-        this.setState(customers)
-      }
+      .then(
+        ([automobile, sales_person, customers]) => {
+          return Promise.all([
+            automobile.json(),
+            sales_person.json(),
+            customers.json()
+          ])
+        }
+      )
+      .then(
+        ([automobile, sales_persons, customers]) => {
+          this.setState(automobile)
+          this.setState(sales_persons)
+          this.setState(customers)
+        }
+      )
+  }
+  async handleSubmit(event) {
+    event.preventDefault();
+    const data = {...this.state};
+    delete data.autos
+    delete data.sales_persons
+    delete data.customers
+    const url = 'http://localhost:8090/api/salesrecord/';
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch(url, fetchConfig);
+    if (response.ok) {
+      const newRecord = await response.json();
+      console.log(newRecord)
+
+      this.setState({
+        auto: "",
+        sales_person: "",
+        customer: "",
+        price: "",
+      });
+    }
+  }
+
+  handleChangeAutomobile(event) {
+    const value = event.target.value;
+    this.setState({ auto: value });
+  }
+
+  handleChangeSalesPerson(event) {
+    const value = event.target.value;
+    this.setState({ sales_person: value });
+  }
+
+  handleChangeCustomer(event) {
+    const value = event.target.value;
+    this.setState({ customer: value });
+  }
+
+  handleChangePrice(event) {
+    const value = event.target.value;
+    this.setState({ price: value });
+  }
+  render() {
+    return (
+      <div className="row">
+        <div className="offset-3 col-6">
+          <div className="shadow p-4 mt-4">
+            <h1>Create a sales record</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="mb-3">
+                <select
+                  onChange={this.handleChangeAutomobile}
+                  value={this.state.auto}
+                  required
+                  name="autos"
+                  id="autos"
+                  className="form-select"
+                >
+                  <option value="">Select the Automobile</option>
+                  {this.state.autos.map(automobile => {
+                    return (
+                      <option key={automobile.id} value={automobile.vin}>
+                        {automobile.vin}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="mb-3">
+                <select
+                  onChange={this.handleChangeSalesPerson}
+                  value={this.state.sales_person}
+                  required
+                  name="sales_persons"
+                  id="sales_persons"
+                  className="form-select"
+                >
+                  <option value="">Sales Person</option>
+                  {this.state.sales_persons.map((salesperson) => {
+                    return (
+                      <option key={salesperson.id} value={salesperson.employee_name}>
+                        {salesperson.employee_name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="mb-3">
+                <select
+                  onChange={this.handleChangeCustomer}
+                  value={this.state.customer}
+                  required
+                  name="customer"
+                  id="customer"
+                  className="form-select"
+                >
+                  <option value="">Customer</option>
+                  {this.state.customers.map((customer) => {
+                    return (
+                      <option key={customer.id} value={customer.phone_number}>
+                        {customer.customer_name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={this.handleChangePrice}
+                  value={this.state.price}
+                  placeholder="Price"
+                  required
+                  type="text"
+                  name="price"
+                  id="price"
+                  className="form-control"
+                />
+                <label htmlFor="price">Price</label>
+              </div>
+              <button className="btn btn-primary">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }
 
-// const createSalesRecord = (props) => {
-//   const [values, setValues] = useState({
-//     automobile: "",
-//     sales_person: "",
-//     customer: "",
-//     price: "",
-//   });
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     const data = {
-//       ...values,
-//     };
-//     await createSalesRecord(data);
-//     setValues({
-//       automobile: "",
-//       sales_person: "",
-//       customer: "",
-//       price: "",
-//     });
-//   };
-
-//   const handleChangeAutomobile = (event) => {
-//     setValues({
-//       ...values,
-//       automobile: event.target.value,
-//     });
-//   };
-//   const handleChangeSalesPerson = (event) => {
-//     setValues({
-//       ...values,
-//       sales_person: event.target.value,
-//     });
-//   };
-//   const handleChangeCustomer = (event) => {
-//     setValues({
-//       ...values,
-//       customer: event.target.value,
-//     });
-//   };
-//   const handleChangePrice = (event) => {
-//     setValues({
-//       ...values,
-//       price: event.target.value,
-//     });
-//   };
-  
-//   return (
-//     <div className="row">
-//       <div className="offset-3 col-6">
-//         <div className="shadow p-4 mt-4">
-//           <h1>Create a sales record</h1>
-//           <form onSubmit={handleSubmit}>
-//           <select id='automobile-select' className='form-select'>
-//             <div className="form-floating mb-3">
-//                 onChange={handleChangeAutomobile}
-//                 value={values.automobile}
-//                 placeholder="Automobile"
-//                 required
-//                 type="text"
-//                 name="automobile"
-//                 id="automobile"
-//                 className="form-control"
-              
-//               <label htmlFor="automobile">Automobile</label>
-//           </select>
-//             </div>
-//             <div className="form-floating mb-3">
-//               <input
-//                 onChange={handleChangeEmployeeNum}
-//                 value={values.employee_num}
-//                 placeholder="Employee Number"
-//                 required
-//                 type="text"
-//                 name="employee_num"
-//                 id="employee_num"
-//                 className="form-control"
-//               />
-//               <label htmlFor="employee_num">Employee Number</label>
-//             </div>
-//             <button className="btn btn-primary">Add</button>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   )
-//   //  🚨🚨🚨 I already added a working Route and NavLink  🚨🚨🚨
-//   // render() {
-//   //   return <h1>Test Sales Record Form</h1>;
-//   // }
-// }

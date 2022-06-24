@@ -2,17 +2,26 @@ import React, {useState} from "react";
 
 // 🚨🚨🚨 Write class or function for sales history🚨🚨🚨
 export default function SalesHistory(props) {
+  const [currentSalesPerson, setCurrentSalesPerson] = useState()
+  
+  function Filtered(event) {
+    setCurrentSalesPerson(Number(event.target.value))
+  }
+
+
+
     // const { salesrecords, salespersons } = props;
-    console.log('testing1:', props.salesrecords)
+    // console.log('testing1:', props.salespersons.sales_persons.{need iterable}.employee_name)
+    // console.log('testing1:', props.salespersons.sales_persons.{need iterable}.employee_name)
     // if (props.salesrecords === undefined) {
     //     return null
     // };
     return (
         <div>
             <h2>Sales Person History</h2>
-            <select id='salesperson-select' className='form-select'>
+            <select onChange={Filtered} value={currentSalesPerson} id='salesperson-select' className='form-select'>
             <option value="">Choose Sales Person</option>
-                {props.salespersons.salesperson.map(salesperson => {
+                {props.salespersons.sales_persons.map(salesperson => {
                     return (
                         <option key={salesperson.id} value={salesperson.id}>
                             {salesperson.employee_name}
@@ -31,7 +40,7 @@ export default function SalesHistory(props) {
         </thead>
         <tbody>
             {props.salesrecords.sales_record
-            // .filter(x => x.employee_name === salesperson.employee_name)
+            .filter(x => x.sales_person.id === currentSalesPerson)
             .map((salesrecord) => {
             return (
               <tr key={salesrecord.id}>

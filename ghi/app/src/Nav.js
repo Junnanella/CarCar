@@ -114,19 +114,19 @@ function Nav() {
                 >
                   Create Sales Record
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className="dropdown-item"
                   aria-current="page"
                   to="sales_record/list"
                 >
                   Sales History List
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
                   to="sales_record/history"
                 >
-                  Sales Person History
+                  Sales History
                 </NavLink>
 
               </ul>

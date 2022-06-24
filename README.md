@@ -183,4 +183,6 @@ Every 60 seconds, the services-poller polls for automobiles from inventory API
 via the `GET` method to poll from `/"http://inventory-api:8000/api/automobiles/"` URL. It then converts that into an AutomobileVO and
 stores it in the database. ([Source file](./service/api/sales_rest/poller.py))
 
-### Bounded contexts
+## Bounded contexts
+
+![Bounded Context Diagram](docs/bounded_contexts_diagram.png)

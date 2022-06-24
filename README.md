@@ -164,7 +164,7 @@ class Customer(models.Model):
         return f"{self.customer_name}"
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Create a Sale Record` section, 🚨🚨🚨 I have added properties for the `automobile`, `sales_person`, and `customer` that are all connected to their respective models via the ForeignKey because each of those models can have many Sales Records, but a Sale Record can only be tied to a single instance from each of those models. They are also set to PROTECT on_delete so that if any of the instances from the other models were to be removed, there will still be record of the sale. `price` is also included as a property per the specification of a Sales Record.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Create a Sale Record` section, 🚨🚨🚨 I have added properties for the `automobile`, `sales_person`, and `customer` that are all connected to their respective models via the ForeignKey because each of those models can have many Sales Records, but a Sale Record can only be tied to a single instance from each of those models. They are also set to PROTECT on_delete to prevent loss of any record of a sale if a user tries to remove any instance of another model that the sales record instance is tied to. `price` is also included as a property per the specification of a Sales Record.
 
 ```python
 class SalesRecord(models.Model):
@@ -191,4 +191,22 @@ Within the Auto Services microservice, an Automobile is represented in a way tha
 In the Auto Sales microservice, it focuses on whether or not the automobile is still available in inventory to determine if it can sell the particular automobile.
 In the Inventory microservice, although it also cares if the automobile exists in it, it's focus is more on the description properties of the automobile, like its color, year, and picture, which are not priorities of the other two microservices.
 
-## REACT FrontEnd Design
+### React Frontend
+
+Each microservice has its own directory to store files for their respective components. Within each directory, there is also a file designated to store functions related to fetching, to keep files more task focused.
+
+Inventory components([Source file](./ghi/app/src/inventory_components))
+
+Sales components([Source file](./ghi/app/src/sales_components))
+
+Services components([Source file](./ghi/app/src/services_components))
+
+This organization is also reflected through the dropdown options in the navbar on the browser. (Examples shown below:)
+
+![Example of Navbar](docs/example_of_navbar.png)
+
+![Example of Dropdown](docs/example_of_inventory_dropdown.png)
+
+Prior to official deployment, all forms will show the user a success message upon successfully submitting form to notify user.
+
+![Example of Success Message](docs/example_of_successful_form_submit.png)

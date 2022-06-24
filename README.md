@@ -15,6 +15,7 @@
     - Service frontend: TechnicianForm
     - Navbar design
   - Backend - Assist with troubleshooting
+  - Lead README
 
 ## System diagram
 
@@ -191,7 +192,7 @@ Within the Auto Services microservice, an Automobile is represented in a way tha
 In the Auto Sales microservice, it focuses on whether or not the automobile is still available in inventory to determine if it can sell the particular automobile.
 In the Inventory microservice, although it also cares if the automobile exists in it, it's focus is more on the description properties of the automobile, like its color, year, and picture, which are not priorities of the other two microservices.
 
-### React Frontend
+### React Frontend Design and Organization
 
 Each microservice has its own directory to store files for their respective components. Within each directory, there is also a file designated to store functions related to fetching, to keep files more task focused.
 

@@ -31,7 +31,7 @@ Models ([Source file](./service/api/service_rest/models.py))
 
 Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) each property in the models are mapped to a column of the screenshots.
 
-🌼🌼🌼 For the AutomobileVO, I used the pattern of having an `import_href` property based on previous class projects. The property of
+For the AutomobileVO, I used the pattern of having an `import_href` property based on previous class projects. The property of
 `vip` is not noted in the front-end screenshots from LEARN, but was added due to the requirement of recording if the automobile was purchased from the delearship or not. null=True have been added to some of the properties to overcome hurdles from making migrations after instances had already been created during development. Prior to official deployment, these will be adjusted as those fields are a requirements when creating automobiles and should already exist when polling those automobile instances from the Inventory API to create the AutomobileVOs.
 
 ```python
@@ -45,7 +45,7 @@ class AutomobileVO(models.Model):
 ```
 
 Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) in the `Enter a Technician` section, I gave Technicians a name
-and employee number. 🌼🌼🌼 I chose integer for the employee number, assuming it'll
+and employee number. I chose integer for the employee number, assuming it'll
 always be a number and not start off with zeroes (eg. `00123`).
 
 ```python
@@ -54,7 +54,7 @@ class Technician(models.Model):
     employee_number = models.IntegerField(unique=True, null=True)
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) from the `List of Appointments` section, 🌼🌼🌼 I built a Status model to note whether an automobile service is currently "Scheduled", "Finished", or has been "Canceled". In the next section of this README, you will see the Status is connected to the Service model via a ForeignKey, as a Status can have many Services, but a Service can only have one Status at a time.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) from the `List of Appointments` section, I built a Status model to note whether an automobile service is currently "Scheduled", "Finished", or has been "Canceled". In the next section of this README, you will see the Status is connected to the Service model via a ForeignKey, as a Status can have many Services, but a Service can only have one Status at a time.
 
 ```python
 class Status(models.Model):
@@ -64,7 +64,7 @@ class Status(models.Model):
         return self.name
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) in the `Enter a Service Appointment` section, 🌼🌼🌼 I have created properties needed for the concierge. I made `vin` have a character field, and not an integer because a VIN will need to include alphabet characters. `Date` and `Time` are separate properties for clear separation in terms of the database columns. There is a ForeignKey connection with `Technician` under the assumption that a Technician can have many Services, but a Service instance will only be worked on by one Technician. The `on_delete` is set to PROTECT so that if the technician is removed from the system, the history of the service is still available. The methods `cancel`, `finish` are linked to the Status but within this service model because we want to be able to update the status for a specific instance of Service and it seems more logical to handle that within the instance of the model on the many side of the one-to-many relationship.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) in the `Enter a Service Appointment` section, I have created properties needed for the concierge. I made `vin` have a character field, and not an integer because a VIN will need to include alphabet characters. `Date` and `Time` are separate properties for clear separation in terms of the database columns. There is a ForeignKey connection with `Technician` under the assumption that a Technician can have many Services, but a Service instance will only be worked on by one Technician. The `on_delete` is set to PROTECT so that if the technician is removed from the system, the history of the service is still available. The methods `cancel`, `finish` are linked to the Status but within this service model because we want to be able to update the status for a specific instance of Service and it seems more logical to handle that within the instance of the model on the many side of the one-to-many relationship.
 
 ```python
 class Service(models.Model):
@@ -129,7 +129,7 @@ Models ([Source file](./service/api/sales_rest/models.py))
 
 Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) each property in the models are mapped to a column of the screenshots.
 
-For AutomobileVO, 🚨🚨🚨 I have `vin` and `name` properties, because those are properties that will be needed for creating a Sales Record. The `is_sold` property is not shown in the example screenshots, but is a part of the requirements that states a Sales Record should associate an automobile that has not yet been sold from inventory.
+For AutomobileVO, I have `vin` and `name` properties, because those are properties that will be needed for creating a Sales Record. The `is_sold` property is not shown in the example screenshots, but is a part of the requirements that states a Sales Record should associate an automobile that has not yet been sold from inventory.
 
 ```python
 class AutomobileVO(models.Model):
@@ -142,7 +142,7 @@ class AutomobileVO(models.Model):
         return f"{self.vin} {self.name}"
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Sales Person` section, 🚨🚨🚨 I have added the properties of `employee_name` and `employee_num`. PositiveSmallIntegerField was chose for employee_num under the assumption that an employee number will always be greater than zero,won't exceed 32767, and won't include alphabet characters.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Sales Person` section, I have added the properties of `employee_name` and `employee_num`. PositiveSmallIntegerField was chose for employee_num under the assumption that an employee number will always be greater than zero,won't exceed 32767, and won't include alphabet characters.
 
 ```python
 class SalesPerson(models.Model):
@@ -153,7 +153,7 @@ class SalesPerson(models.Model):
         return f"{self.employee_name}"
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Potential Customer` section, the Customer model was given properties of `customer_name`, `address`, and `phone_number`. 🚨🚨🚨 The phone_number property was assigned unique=True, under the assumption that customers do not share a phone number with another customer.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Potential Customer` section, the Customer model was given properties of `customer_name`, `address`, and `phone_number`. The phone_number property was assigned unique=True, under the assumption that customers do not share a phone number with another customer.
 
 ```python
 class Customer(models.Model):
@@ -165,7 +165,7 @@ class Customer(models.Model):
         return f"{self.customer_name}"
 ```
 
-Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Create a Sale Record` section, 🚨🚨🚨 I have added properties for the `automobile`, `sales_person`, and `customer` that are all connected to their respective models via the ForeignKey because each of those models can have many Sales Records, but a Sale Record can only be tied to a single instance from each of those models. They are also set to PROTECT on_delete to prevent loss of any record of a sale if a user tries to remove any instance of another model that the sales record instance is tied to. `price` is also included as a property per the specification of a Sales Record.
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Create a Sale Record` section, I have added properties for the `automobile`, `sales_person`, and `customer` that are all connected to their respective models via the ForeignKey because each of those models can have many Sales Records, but a Sale Record can only be tied to a single instance from each of those models. They are also set to PROTECT on_delete to prevent loss of any record of a sale if a user tries to remove any instance of another model that the sales record instance is tied to. `price` is also included as a property per the specification of a Sales Record.
 
 ```python
 class SalesRecord(models.Model):
@@ -186,7 +186,7 @@ stores it in the database. ([Source file](./service/api/sales_rest/poller.py))
 
 ## Bounded contexts
 
-![Bounded Context Diagram](docs/bounded_contexts_diagram.png)
+![Bounded Context Diagram](docs/bounded_contexts_aggregates.png)
 The three services intersect at a point represented by an Automobile. Each microservice interprets and focuses on it a different way.
 Within the Auto Services microservice, an Automobile is represented in a way that focuses on whether or not it had at one point been sold by this dealership, if so, the automobile is considered a VIP.
 In the Auto Sales microservice, it focuses on whether or not the automobile is still available in inventory to determine if it can sell the particular automobile.

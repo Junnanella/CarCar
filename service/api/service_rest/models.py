@@ -5,10 +5,15 @@ from django.urls import reverse
 # Create your models here.
 
 class Status(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key =True)
     name = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["id",]
+        verbose_name_plural = "statuses"
 
 
 class AutomobileVO(models.Model):
@@ -57,12 +62,12 @@ class Service(models.Model):
         ) 
 
     def cancel(self):
-        status= Status.object.get(name="cancelled")
+        status= Status.object.get(name="Cancel")
         self.status= status
         self.save()
 
     def finish(self):
-        status= Status.object.get(name="finished")
+        status= Status.object.get(name="Finish")
         self.status= status
         self.save()        
 

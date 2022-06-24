@@ -16,6 +16,7 @@ import CreateSalesRecord from "./sales_components/SalesRecordForm";
 import { CreateTechnicianForm } from "./services_components/TechnicianForm";
 import CreateAppointmentForm from "./services_components/AppointmentsForm";
 import ServiceAppointmentList from "./services_components/AppointmentsList";
+import ServiceHistory from "./services_components/ServiceHistory";
 
 // 🚨🚨🚨 Import sales history class or function🚨🚨🚨
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
@@ -52,6 +53,8 @@ function App(props) {
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />
           <Route path="service_appointments/new/" element={<CreateAppointmentForm />} />
           <Route path="service_appointments/" element={<ServiceAppointmentList />} />
+          <Route path="service_history/" element={<ServiceHistory services={this.state.services} onSearch={this.onSearch} />} />
+
         </Routes>
       </div>
     </BrowserRouter>

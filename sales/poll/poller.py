@@ -11,19 +11,18 @@ django.setup()
 
 # Import models from sales_rest, here.
 from sales_rest.models import AutomobileVO
+
 # from sales_rest.models import Something
 def get_vin():
     response = requests.get("http://inventory-api:8000/api/automobiles/")
     content = json.loads(response.content)
-    for automobile in content['autos']:
-        AutomobileVO.objects.update_or_create(
-            vin = automobile['vin']
-        )
+    for automobile in content["autos"]:
+        AutomobileVO.objects.update_or_create(vin=automobile["vin"])
 
 
 def poll():
     while True:
-        print('Sales poller polling for data')
+        print("Sales poller polling for data")
         try:
             get_vin()
             pass

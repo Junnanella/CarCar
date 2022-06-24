@@ -23,12 +23,13 @@ def get_vin():
 def poll():
     while True:
         print("Sales poller polling for data")
+
         try:
             get_vin()
-            pass
         except Exception as e:
-            # print(e, file=sys.stderr)
-            time.sleep(10)
+            print(e, file=sys.stderr)
+
+        time.sleep(60)
 
 
 if __name__ == "__main__":

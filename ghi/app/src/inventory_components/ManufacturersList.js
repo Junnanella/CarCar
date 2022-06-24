@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ManufacturerList(props) {
   const { manufacturers } = props;
-
+  console.log('😁😀😀',manufacturers)
   return (
     <div>
       <h2>Manufacturers</h2>

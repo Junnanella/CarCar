@@ -117,10 +117,18 @@ function Nav() {
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
+                  to="sales_record/list"
+                >
+                  Sales History List
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  aria-current="page"
                   to="sales_record/history"
                 >
                   Sales History
                 </NavLink>
+
               </ul>
             </li>
             <li className="nav-item dropdown">

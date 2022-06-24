@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-<<<<<<< HEAD
 
 // Load Data functions
 const loadManufacturers = async () => {
@@ -41,14 +40,10 @@ const loadSalesRecords = async () => {
   const responseJson = await response.json();
   return responseJson;
 };
+
 // import { loadManufacturers } from "./inventory_components/InventoryApi";
 // import { loadVehicles } from "./inventory_components/InventoryApi";
 // import { loadAutomobiles } from "./inventory_components/InventoryApi";
-=======
-import { loadManufacturers } from "./inventory_components/InventoryApi";
-import { loadVehicles } from "./inventory_components/InventoryApi";
-import { loadAutomobiles } from "./inventory_components/InventoryApi";
->>>>>>> main
 
 const main = async () => {
   const manufacturers = await loadManufacturers();

@@ -2,7 +2,6 @@ import React from "react";
 
 export default function ManufacturerList(props) {
   const { manufacturers } = props;
-  console.log('😁😀😀',manufacturers)
   return (
     <div>
       <h2>Manufacturers</h2>
@@ -13,7 +12,7 @@ export default function ManufacturerList(props) {
           </tr>
         </thead>
         <tbody>
-          {manufacturers.map((manufacturer) => {
+          {manufacturers.manufacturers.map((manufacturer) => {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>

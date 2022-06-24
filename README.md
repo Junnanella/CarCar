@@ -125,7 +125,7 @@ stores it in the database. ([Source file](./service/api/service_rest/poller.py))
 Explain your models and integration with the inventory
 microservice, here:
 
-Models ([Source file](./service/api/sales_rest/models.py))
+Models ([Source file](./sales/api/sales_rest/models.py))
 
 Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) each property in the models are mapped to a column of the screenshots.
 
@@ -182,7 +182,7 @@ class SalesRecord(models.Model):
 
 Every 60 seconds, the services-poller polls for automobiles from inventory API
 via the `GET` method to poll from `/"http://inventory-api:8000/api/automobiles/"` URL. It then converts that into an AutomobileVO and
-stores it in the database. ([Source file](./service/api/sales_rest/poller.py))
+stores it in the database. ([Source file](./sales/api/sales_rest/poller.py))
 
 ## Bounded contexts
 

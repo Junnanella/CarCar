@@ -53,7 +53,7 @@ function App(props) {
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />
           <Route path="service_appointments/new/" element={<CreateAppointmentForm />} />
           <Route path="service_appointments/" element={<ServiceAppointmentList />} />
-          <Route path="service_history/" element={<ServiceHistory services={this.state.services} onSearch={this.onSearch} />} />
+          <Route path="service_history/" element={<ServiceHistory />} />
 
         </Routes>
       </div>

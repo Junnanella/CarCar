@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 function ServiceAppointmentList() {
     let [services, setAppointment] = useState([]);
 
-    
     useEffect(() => {
         async function fectchAppointment() {
             const response = await fetch('http://localhost:8080/api/services/');
-            if (response.ok){
+            if (response.ok) {
                 const newAppointment = await response.json();
                 setAppointment(newAppointment.services)
             }
@@ -18,11 +17,31 @@ function ServiceAppointmentList() {
     console.log(services)
 
 
-    // function cancel(service){
-    //     const url = `http://localhost:8080/api/services/${service.vin}`;
-    
-    //     const fectchConfig = 
+    // function Cancel(service) {
+    //     const url = `http://localhost:8080/api/services/${service.vin}/cancel`;
+    //     const fectchConfig = {
+    //         method: "put",
+    //         body: JSON.stringify(service),
+    //         headers: {
+    //             'Content-Type':'application/json',
+    //         }
+    //     }
+    //     const response = fetch(url,fectchConfig)
+    //         console.log("hi",response)
 
+    // }
+
+    // function Finish(service) {
+    //     const url = `http://localhost:8080/api/services/${service.vin}/finish`;
+    //     const fectchConfig = {
+    //         method: "put",
+    //         body: JSON.stringify(service),
+    //         headers: {
+    //             'Content-Type':'application/json',
+    //         }
+    //     }
+    //     const response = fetch(url,fectchConfig)
+    //         console.log("hi",response)
     // }
 
 
@@ -38,12 +57,12 @@ function ServiceAppointmentList() {
                         <th>Time</th>
                         <th>Technician</th>
                         <th>Reason</th>
-                        <th>Status</th>
-                        {/* <th>VIP</th> */}
+                        <th>VIP</th>
+                        {/* <th>Status</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {services.filter(service => service.status.id === 1).map((service) => {
+                    {services.map((service) => {
                         return (
                             <tr key={service.id}>
                                 <td>{service.vin}</td>
@@ -52,12 +71,12 @@ function ServiceAppointmentList() {
                                 <td>{service.time.split("T")[1].slice(0, 5)}</td>
                                 <td>{service.technician.name}</td>
                                 <td>{service.reason}</td>
-                                <td>
-                                    <button onClick = {() =>services.cancel(service) } className = "btn btn-danger"> Cancel</button>
-                                    <button onClick = {() =>services.finish(service) } className = "btn btn-success"> Finish</button>
-                                </td>
-                                {/* <td>{service.status}</td>
-                                <td>{service.vip}</td> */}
+                                <td>{(service.vip) ? "False" : "True"}</td>
+                                {/* <td>
+                                    <button onClick={() => Cancel(service)} className="btn btn-danger"> Cancel</button>
+                                    <button onClick={() => Finish(service)} className="btn btn-success"> Finish</button>
+                                </td> */}
+
                             </tr>
                         );
                     })}

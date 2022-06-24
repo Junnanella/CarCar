@@ -167,10 +167,9 @@ def api_detail_technician(request, pk):
         return JsonResponse({"deleted": count > 0})
 
 
-
 @require_http_methods(["PUT"])
 def api_cancel_appointment(request,vin):
-    appointment = Service.objects.get(id=vin)
+    appointment = Service.objects.get(vin=vin)
     appointment.cancel()
     return JsonResponse(
         appointment,
@@ -181,7 +180,7 @@ def api_cancel_appointment(request,vin):
 
 @require_http_methods(["PUT"])
 def api_finish_appointment(request,vin):
-    appointment = Service.objects.get(id=vin)
+    appointment = Service.objects.get(vin=vin)
     appointment.finish()
     return JsonResponse(
         appointment,

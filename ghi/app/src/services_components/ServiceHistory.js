@@ -14,7 +14,8 @@ class ServiceHistory extends React.Component {
 
     handleVinChange(event) {
         const value = event.target.value
-        this.setState({ vin: value })
+        this.setState({vin:value})
+        console.log("🚨🚨 ")
     }
 
     async onSearch(event) {
@@ -22,19 +23,19 @@ class ServiceHistory extends React.Component {
         const data = { ...this.state };
         console.log("hello", data);
         const servicesUrl = `http://localhost:8080/api/services/${data.vin}`;
-        const fetchConfig = {
-            method: 'get',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-        const response = await fetch(servicesUrl, fetchConfig)
+        // const fetchConfig = {
+        //     method: 'GET',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     }
+        // }
+        const response = await fetch(servicesUrl)
         if (response.ok) {
             const results = await response.json();
             console.log(results)
-            console.log("🚨🚨🚨 ")
-            this.setState({ services: results });
+            console.log("🚨 ")
+            this.setState({ services: [results] });
         }
     }
 
@@ -67,6 +68,7 @@ class ServiceHistory extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
+                           { console.log(this)}
                             {this.state.services.map(service => {
                                 return (
                                     <tr key={service.id}>
@@ -82,7 +84,6 @@ class ServiceHistory extends React.Component {
                         </tbody>
                     </table>
                 </div>
-
             </>
         )
     }

@@ -25,12 +25,12 @@ urlpatterns = [
         name="api_detail_technician",
     ),
     path(
-        "services/<str:vin>/",
+        "services/<str:vin>/cancel",
         api_cancel_appointment,
         name="api_cancel_appointment",
     ),
     path(
-        "services/<str:vin>/",
+        "services/<str:vin>/finish",
         api_finish_appointment,
         name="api_finish_appointment",
     ),
@@ -40,5 +40,4 @@ urlpatterns = [
         name="api_history_view",
     ),
    
-
 ]

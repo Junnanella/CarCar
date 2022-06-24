@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { createSalesPerson } from "./SalesAPI";
+import "./sales.css";
 
 export const SalesPersonForm = (props) => {
   const [values, setValues] = useState({
     employee_name: "",
     employee_num: "",
   });
+
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,6 +21,7 @@ export const SalesPersonForm = (props) => {
       employee_name: "",
       employee_num: "",
     });
+    setIsSuccessfullySubmitted(true);
   };
 
   const handleChangeEmployeeName = (event) => {
@@ -68,6 +72,11 @@ export const SalesPersonForm = (props) => {
             </div>
             <button className="btn btn-primary">Add</button>
           </form>
+          {isSuccessfullySubmitted && (
+            <div className="successfully_submitted">
+              New Sales Person Added to System
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
 import ManufacturerList from "./inventory_components/ManufacturersList";
-import ManufacturerForm from "./inventory_components/ManufacturerForm";
+import { ManufacturerForm } from "./inventory_components/ManufacturerForm";
 import VehicleList from "./inventory_components/VehiclesList";
-import VehicleForm from "./inventory_components/VehicleForm";
+import { VehicleForm } from "./inventory_components/VehicleForm";
 import AutomobileList from "./inventory_components/AutomobileList";
-import AutomobileForm from "./inventory_components/AutomobileForm";
+import { AutomobileForm } from "./inventory_components/AutomobileForm";
 
 // import Services components
 
@@ -22,9 +22,7 @@ import ServiceHistory from "./services_components/ServiceHistory";
 // 🚨🚨🚨 Then add route in the return of App function🚨🚨🚨
 
 function App(props) {
-  const { manufacturers } = props.manufacturers;
-  const { models: vehicles } = props.vehicles;
-  const { autos: automobiles } = props.automobiles;
+  const { manufacturers, vehicles, automobiles } = props;
 
   return (
     <BrowserRouter>

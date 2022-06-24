@@ -57,7 +57,6 @@ def api_list_services(request):
         )
     else:
             content = json.loads(request.body)
-            print(content)
             try:
                 technician_id = content["technician"]
                 technician = Technician.objects.get(id=technician_id)
@@ -135,7 +134,6 @@ def api_list_technician(request):
         )
     else:
         content = json.loads(request.body)
-        print(content)
         try:
             id= content["employee_number"]
             name = content["name"]

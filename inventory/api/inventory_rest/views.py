@@ -21,7 +21,7 @@ def api_automobiles(request):
     else:
         try:
             content = json.loads(request.body)
-            model_id = content["model"]
+            model_id = content["model_id"]
             model = VehicleModel.objects.get(pk=model_id)
             content["model"] = model
             auto = Automobile.objects.create(**content)
@@ -30,7 +30,7 @@ def api_automobiles(request):
                 encoder=AutomobileEncoder,
                 safe=False,
             )
-        except:
+        except Exception as err:
             response = JsonResponse({"message": "Could not create the automobile"})
             response.status_code = 400
             return response
@@ -160,7 +160,7 @@ def api_vehicle_models(request):
                 encoder=VehicleModelEncoder,
                 safe=False,
             )
-        except:
+        except Exception as err:
             response = JsonResponse({"message": "Could not create the vehicle model"})
             response.status_code = 400
             return response

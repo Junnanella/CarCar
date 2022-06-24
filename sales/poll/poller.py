@@ -28,10 +28,6 @@ def poll():
             get_vin()
         except Exception as e:
             print(e, file=sys.stderr)
-<<<<<<< HEAD
-=======
-
->>>>>>> main
         time.sleep(60)
 
 

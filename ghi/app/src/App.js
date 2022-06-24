@@ -18,12 +18,8 @@ import { CustomerForm } from "./sales_components/CustomerForm";
 import { SalesPersonForm } from "./sales_components/SalesPersonForm";
 import { CreateTechnicianForm } from "./services_components/TechnicianForm";
 import CreateAppointmentForm from "./services_components/AppointmentsForm";
-<<<<<<< HEAD
-// import ServiceAppointmentList from "./services_components/AppointmentList";
-=======
 import ServiceAppointmentList from "./services_components/AppointmentsList";
-import { CustomerForm } from "./sales_components/CustomerForm";
->>>>>>> main
+// import { CustomerForm } from "./sales_components/CustomerForm";
 
 // 🚨🚨🚨 Import sales history class or function🚨🚨🚨
 import SalesHistory from "./sales_components/SalesHistory";
@@ -67,10 +63,6 @@ function App(props) {
             <Route path="history" element={<SalesHistory salespersons={props.salespersons} salesrecords={props.salesrecords} />} />
           </Route>
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />
-<<<<<<< HEAD
-          <Route path="service_appointments/new/" element={<CreateAppointmentForm />} />
-          {/* <Route path="service_appointments/" element={<ServiceAppointmentList />} /> */}
-=======
           <Route
             path="service_appointments/new/"
             element={<CreateAppointmentForm />}
@@ -79,7 +71,6 @@ function App(props) {
             path="service_appointments/"
             element={<ServiceAppointmentList />}
           />
->>>>>>> main
         </Routes>
       </div>
     </BrowserRouter>

@@ -31,7 +31,7 @@ Models ([Source file](./service/api/service_rest/models.py))
 Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) each property in the models are mapped to a column of the screenshots.
 
 🌼🌼🌼 For the AutomobileVO, I used the pattern of having an `import_href` property based on previous class projects. The property of
-`vip` is not noted in the front-end screenshots from LEARN, but was added due to the requirement of knowing if the automobile was purchased from the delearship or not. null=True
+`vip` is not noted in the front-end screenshots from LEARN, but was added due to the requirement of recording if the automobile was purchased from the delearship or not. null=True have been added to some of the properties to overcome hurdles from making migrations after instances had already been created during development. Prior to official deployment, these will be adjusted as those fields are a requirements when creating automobiles and should already exist when polling those automobile instances from the Inventory API to create the AutomobileVOs.
 
 ```python
 class AutomobileVO(models.Model):
@@ -124,4 +124,63 @@ stores it in the database. ([Source file](./service/api/service_rest/poller.py))
 Explain your models and integration with the inventory
 microservice, here.
 
-### How Automobiles are presented in each bounded context
+Models ([Source file](./service/api/sales_rest/models.py))
+
+Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) each property in the models are mapped to a column of the screenshots.
+
+For AutomobileVO, 🚨🚨🚨 I have `vin` and `name` properties, because those are properties that will be needed for creating a Sales Record. The `is_sold` property is not shown in the example screenshots, but is a part of the requirements that states a Sales Record should associate an automobile that has not yet been sold from inventory.
+
+```python
+class AutomobileVO(models.Model):
+    vin = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    is_sold = models.BooleanField(default=False, blank=True, null=True)
+
+
+    def __str__(self):
+        return f"{self.vin} {self.name}"
+```
+
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Sales Person` section, 🚨🚨🚨 I have added the properties of `employee_name` and `employee_num`. PositiveSmallIntegerField was chose for employee_num under the assumption that an employee number will always be greater than zero,won't exceed 32767, and won't include alphabet characters.
+
+```python
+class SalesPerson(models.Model):
+    employee_name = models.CharField(max_length= 100)
+    employee_num = models.PositiveSmallIntegerField(null=False, blank=False, unique=True)
+
+    def __str__(self):
+        return f"{self.employee_name}"
+```
+
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Add a Potential Customer` section, the Customer model was given properties of `customer_name`, `address`, and `phone_number`. 🚨🚨🚨 The phone_number property was assigned unique=True, under the assumption that customers do not share a phone number with another customer.
+
+```python
+class Customer(models.Model):
+    customer_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=17, unique=True, null=False, blank=False)
+
+    def __str__(self):
+        return f"{self.customer_name}"
+```
+
+Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/68-assessment-project.md) in the `Create a Sale Record` section, 🚨🚨🚨 I have added properties for the `automobile`, `sales_person`, and `customer` that are all connected to their respective models via the ForeignKey because each of those models can have many Sales Records, but a Sale Record can only be tied to a single instance from each of those models. They are also set to PROTECT on_delete so that if any of the instances from the other models were to be removed, there will still be record of the sale. `price` is also included as a property per the specification of a Sales Record.
+
+```python
+class SalesRecord(models.Model):
+    automobile = models.ForeignKey(AutomobileVO, on_delete=models.PROTECT)
+    sales_person = models.ForeignKey(SalesPerson, on_delete=models.PROTECT)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    price = models.PositiveIntegerField(null=False, blank=False)
+
+    def __str__(self):
+        return f"{self.automobile}"
+```
+
+### Integration with inventory micro-service
+
+Every 60 seconds, the services-poller polls for automobiles from inventory API
+via the `GET` method to poll from `/"http://inventory-api:8000/api/automobiles/"` URL. It then converts that into an AutomobileVO and
+stores it in the database. ([Source file](./service/api/sales_rest/poller.py))
+
+### Bounded contexts

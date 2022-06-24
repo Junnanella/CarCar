@@ -122,7 +122,7 @@ stores it in the database. ([Source file](./service/api/service_rest/poller.py))
 ### Sales microservice
 
 Explain your models and integration with the inventory
-microservice, here.
+microservice, here:
 
 Models ([Source file](./service/api/sales_rest/models.py))
 
@@ -186,3 +186,9 @@ stores it in the database. ([Source file](./service/api/sales_rest/poller.py))
 ## Bounded contexts
 
 ![Bounded Context Diagram](docs/bounded_contexts_diagram.png)
+The three services intersect at a point represented by an Automobile. Each microservice interprets and focuses on it a different way.
+Within the Auto Services microservice, an Automobile is represented in a way that focuses on whether or not it had at one point been sold by this dealership, if so, the automobile is considered a VIP.
+In the Auto Sales microservice, it focuses on whether or not the automobile is still available in inventory to determine if it can sell the particular automobile.
+In the Inventory microservice, although it also cares if the automobile exists in it, it's focus is more on the description properties of the automobile, like its color, year, and picture, which are not priorities of the other two microservices.
+
+## REACT FrontEnd Design

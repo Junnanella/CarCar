@@ -32,9 +32,9 @@ def api_sales_person(request):
             safe=False,
         )
         # except:
-            # response = JsonResponse({"message": "Could not create sales person"})
-            # response.status_code = 400
-            # return response
+        # response = JsonResponse({"message": "Could not create sales person"})
+        # response.status_code = 400
+        # return response
 
 
 @require_http_methods(["GET"])
@@ -85,8 +85,7 @@ def api_sale_records(request):
         # JsonResponse(dictionary, encoder, safe=false)
     else:
         content = json.loads(request.body)
-        print("😶😶😶", content)
-        try: 
+        try:
             automobile_vin = content["auto"]
             automobile = AutomobileVO.objects.get(vin=automobile_vin)
             sales_person_name = content["sales_person"]
@@ -94,17 +93,16 @@ def api_sale_records(request):
             phone_number = content["customer"]
             customer = Customer.objects.get(phone_number=phone_number)
             newSaleRecord = SalesRecord.objects.create(
-                automobile = automobile,
-                sales_person = sales_person,
-                customer = customer, 
-                price = content['price']
+                automobile=automobile,
+                sales_person=sales_person,
+                customer=customer,
+                price=content["price"],
             )
             return JsonResponse(newSaleRecord, encoder=SalesRecordEncoder, safe=False)
         except AutomobileVO.DoesNotExist:
             response = JsonResponse({"message": "Invalid Automobile VIN"})
             response.status_code = 400
             return response
-
 
         #     newSaleRecord = SalesRecord.objects.create(**content)
         #         automobile = automobile,
@@ -117,4 +115,3 @@ def api_sale_records(request):
         #     encoder=SalesRecordEncoder,
         #     safe=False,
         # )
-

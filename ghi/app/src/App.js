@@ -17,7 +17,6 @@ import SalesHistory from "./sales_components/SalesHistory";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
 
 function App(props) {
-  console.log("🌼🌼🌼", props);
   const {
     salespersons,
     customers,

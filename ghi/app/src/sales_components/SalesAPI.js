@@ -1,13 +1,13 @@
 export const loadSalesPerson = async () => {
   const response = await fetch("http://localhost:8090/api/salesperson");
   const responseJson = await response.json();
-  return responseJson.salesperson;
+  return responseJson.sales_persons;
 };
 
 export const loadSalesRecord = async () => {
   const response = await fetch("http://localhost:8090/api/salesrecord");
   const responseJson = await response.json();
-  return responseJson.salesrecord;
+  return responseJson.sales_record;
 };
 
 export const loadCustomers = async () => {

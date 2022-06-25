@@ -6,26 +6,11 @@ import {
   loadManufacturers,
   loadVehicles,
 } from "./inventory_components/InventoryApi";
-
-const loadSalesPerson = async () => {
-  // fetch data from api
-  const response = await fetch("http://localhost:8090/api/salesperson/");
-  const responseJson = await response.json();
-  return responseJson;
-};
-
-const loadCustomers = async () => {
-  // fetch data from api
-  const response = await fetch("http://localhost:8090/api/customers/");
-  const responseJson = await response.json();
-  return responseJson;
-};
-const loadSalesRecords = async () => {
-  // fetch data from api
-  const response = await fetch("http://localhost:8090/api/salesrecord/");
-  const responseJson = await response.json();
-  return responseJson;
-};
+import {
+  loadCustomers,
+  loadSalesPerson,
+  loadSalesRecord,
+} from "./sales_components/SalesAPI";
 
 const main = async () => {
   const manufacturers = await loadManufacturers();
@@ -33,7 +18,7 @@ const main = async () => {
   const autos = await loadAutomobiles();
   const salespersons = await loadSalesPerson();
   const customers = await loadCustomers();
-  const salesrecords = await loadSalesRecords();
+  const salesrecords = await loadSalesRecord();
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(

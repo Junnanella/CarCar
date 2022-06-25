@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 export default function SalesHistory(props) {
+  const { salespersons } = props;
+  const { salesrecords } = props;
   const [currentSalesPerson, setCurrentSalesPerson] = useState();
 
   function Filtered(event) {
@@ -18,7 +20,7 @@ export default function SalesHistory(props) {
         className="form-select"
       >
         <option value="">Choose Sales Person</option>
-        {props.salespersons.sales_persons.map((salesperson) => {
+        {salespersons.map((salesperson) => {
           return (
             <option key={salesperson.id} value={salesperson.id}>
               {salesperson.employee_num}
@@ -37,7 +39,7 @@ export default function SalesHistory(props) {
           </tr>
         </thead>
         <tbody>
-          {props.salesrecords.sales_record
+          {salesrecords
             .filter((x) => x.sales_person.id === currentSalesPerson)
             .map((salesrecord) => {
               return (
@@ -64,7 +66,7 @@ export default function SalesHistory(props) {
           </tr>
         </thead>
         <tbody>
-          {props.salesrecords.sales_record.map((salesrecord) => {
+          {salesrecords.map((salesrecord) => {
             return (
               <tr key={salesrecord.id}>
                 <td>{salesrecord.sales_person.employee_name}</td>

@@ -15,14 +15,17 @@ import ServiceAppointmentList from "./services_components/AppointmentsList";
 import ServiceHistory from "./services_components/ServiceHistory";
 import SalesHistory from "./sales_components/SalesHistory";
 import CreateSalesRecord from "./sales_components/SalesRecordForm";
-import SalesRecordList from "./sales_components/SalesRecordList";
-
 
 function App(props) {
-  const { salespersons: salespersons } = props.salespersons;
-  const { customers: customers } = props.customers;
-  const { salesrecords: salesrecords } = props.salesrecords;
-  const { manufacturers, vehicles, automobiles } = props;
+  console.log("🌼🌼🌼", props);
+  const {
+    salespersons,
+    customers,
+    salesrecords,
+    manufacturers,
+    vehicles,
+    automobiles,
+  } = props;
 
   return (
     <BrowserRouter>
@@ -47,13 +50,28 @@ function App(props) {
           <Route path="automobiles/new/" element={<AutomobileForm />} />
           <Route path="salesperson/new/" element={<SalesPersonForm />} />
           <Route path="customer/new/" element={<CustomerForm />} />
-          <Route path='sales_record' >
+          <Route path="sales_record">
             <Route path="new" element={<CreateSalesRecord />} />
-            <Route path="history" element={<SalesHistory salespersons={props.salespersons} salesrecords={props.salesrecords} />} />
+            <Route
+              path="history"
+              element={
+                <SalesHistory
+                  salespersons={salespersons}
+                  salesrecords={salesrecords}
+                  customers={customers}
+                />
+              }
+            />
           </Route>
           <Route path="technicians/new/" element={<CreateTechnicianForm />} />
-          <Route path="service_appointments/new/" element={<CreateAppointmentForm />} />
-          <Route path="service_appointments/" element={<ServiceAppointmentList />} />
+          <Route
+            path="service_appointments/new/"
+            element={<CreateAppointmentForm />}
+          />
+          <Route
+            path="service_appointments/"
+            element={<ServiceAppointmentList />}
+          />
           <Route path="service_history/" element={<ServiceHistory />} />
         </Routes>
       </div>

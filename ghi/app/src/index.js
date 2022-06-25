@@ -27,10 +27,6 @@ const loadSalesRecords = async () => {
   return responseJson;
 };
 
-// import { loadManufacturers } from "./inventory_components/InventoryApi";
-// import { loadVehicles } from "./inventory_components/InventoryApi";
-// import { loadAutomobiles } from "./inventory_components/InventoryApi";
-
 const main = async () => {
   const manufacturers = await loadManufacturers();
   const vehicles = await loadVehicles();

@@ -12,7 +12,7 @@ export default function ManufacturerList(props) {
           </tr>
         </thead>
         <tbody>
-          {manufacturers.manufacturers.map((manufacturer) => {
+          {manufacturers.map((manufacturer) => {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>

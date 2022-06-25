@@ -1,26 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import {
+  loadAutomobiles,
+  loadManufacturers,
+  loadVehicles,
+} from "./inventory_components/InventoryApi";
 
-// Load Data functions
-const loadManufacturers = async () => {
-  // fetch data from api
-  const response = await fetch("http://localhost:8100/api/manufacturers/");
-  const responseJson = await response.json();
-  return responseJson;
-};
-
-const loadVehicles = async () => {
-  const response = await fetch("http://localhost:8100/api/models/");
-  const responseJson = await response.json();
-  return responseJson;
-};
-
-const loadAutomobiles = async () => {
-  const response = await fetch("http://localhost:8100/api/automobiles/");
-  const responseJson = await response.json();
-  return responseJson;
-};
 const loadSalesPerson = async () => {
   // fetch data from api
   const response = await fetch("http://localhost:8090/api/salesperson/");

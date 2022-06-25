@@ -16,7 +16,7 @@ export default function VehicleList(props) {
           </tr>
         </thead>
         <tbody>
-          {vehicles.models.map((vehicle) => {
+          {vehicles.map((vehicle) => {
             return (
               <tr key={vehicle.id}>
                 <td>{vehicle.name}</td>

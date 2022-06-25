@@ -29,6 +29,14 @@ Explain your models and integration with the inventory microservice, here:
 
 Models ([Source file](./service/api/service_rest/models.py))
 
+\*Please note that Status instances need to be built on the Django admin in order to be able to create a service appointment.
+
+id 1 = "Scheduled"
+
+id 2 = "Cancel"
+
+id 3 = "Finish"
+
 Based on [LEARN requirements and screenshots](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) each property in the models are mapped to a column of the screenshots.
 
 For the AutomobileVO, I used the pattern of having an `import_href` property based on previous class projects. The property of
@@ -55,6 +63,14 @@ class Technician(models.Model):
 ```
 
 Per [specification](https://learn-2.galvanize.com/cohorts/3283/blocks/1890/content_files/build/01-practice-test-project/67-assessment-project.md) from the `List of Appointments` section, I built a Status model to note whether an automobile service is currently "Scheduled", "Finished", or has been "Canceled". In the next section of this README, you will see the Status is connected to the Service model via a ForeignKey, as a Status can have many Services, but a Service can only have one Status at a time.
+
+\*Please note that Status instances need to be built on the Django admin in order to be able to create a service appointment.
+
+id 1 = "Scheduled"
+
+id 2 = "Cancel"
+
+id 3 = "Finish"
 
 ```python
 class Status(models.Model):

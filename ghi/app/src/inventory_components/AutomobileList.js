@@ -17,7 +17,7 @@ export default function AutomobileList(props) {
           </tr>
         </thead>
         <tbody>
-          {props.automobiles.map((automobile) => {
+          {automobiles.autos.map((automobile) => {
             return (
               <tr key={automobile.id}>
                 <td>{automobile.vin}</td>

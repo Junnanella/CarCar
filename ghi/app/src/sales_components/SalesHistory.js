@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 
 export default function SalesHistory(props) {
-  const [currentSalesPerson, setCurrentSalesPerson] = useState()
+  const [currentSalesPerson, setCurrentSalesPerson] = useState();
 
   function Filtered(event) {
-    setCurrentSalesPerson(Number(event.target.value))
+    setCurrentSalesPerson(Number(event.target.value));
   }
   return (
     <div>
       <h1>Sales History</h1>
       <h3>Employee Sales Records</h3>
-      <select default='selected' onChange={Filtered} value={currentSalesPerson} id='salesperson-select' className='form-select'>
+      <select
+        default="selected"
+        onChange={Filtered}
+        value={currentSalesPerson}
+        id="salesperson-select"
+        className="form-select"
+      >
         <option value="">Choose Sales Person</option>
-        {props.salespersons.sales_persons.map(salesperson => {
+        {props.salespersons.sales_persons.map((salesperson) => {
           return (
             <option key={salesperson.id} value={salesperson.id}>
               {salesperson.employee_num}
@@ -32,7 +38,7 @@ export default function SalesHistory(props) {
         </thead>
         <tbody>
           {props.salesrecords.sales_record
-            .filter(x => x.sales_person.id === currentSalesPerson)
+            .filter((x) => x.sales_person.id === currentSalesPerson)
             .map((salesrecord) => {
               return (
                 <tr key={salesrecord.id}>
@@ -46,9 +52,9 @@ export default function SalesHistory(props) {
             })}
         </tbody>
       </table>
+      <h3>Sales Records</h3>
       <table className="table table-striped">
         <thead>
-          <h3>Sales Records</h3>
           <tr>
             <th>Sales Person</th>
             <th>Employee#</th>
@@ -58,14 +64,14 @@ export default function SalesHistory(props) {
           </tr>
         </thead>
         <tbody>
-        {props.salesrecords.sales_record.map((salesrecord) => {
+          {props.salesrecords.sales_record.map((salesrecord) => {
             return (
               <tr key={salesrecord.id}>
                 <td>{salesrecord.sales_person.employee_name}</td>
                 <td>{salesrecord.sales_person.employee_num}</td>
                 <td>{salesrecord.customer.customer_name}</td>
                 <td>{salesrecord.automobile.vin}</td>
-                <td>{salesrecord.price}</td> 
+                <td>{salesrecord.price}</td>
               </tr>
             );
           })}

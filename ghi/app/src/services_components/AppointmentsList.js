@@ -14,7 +14,6 @@ function ServiceAppointmentList() {
         fectchAppointment()
     }, [])
 
-    console.log(services)
 
 
     // function Cancel(service) {

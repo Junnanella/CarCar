@@ -36,8 +36,6 @@ class CreateAppointmentForm extends React.Component {
         event.preventDefault();
         const data = { ...this.state };
         delete data.technicians;
-        console.log(data);
-        console.log("hello")
         
         const technicianUrl = 'http://localhost:8080/api/services/';
         const fetchConfig = {
@@ -51,9 +49,7 @@ class CreateAppointmentForm extends React.Component {
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
             const newservice = await response.json();
-            console.log(newservice)
-            console.log("HIHIHI")
-            
+
             const cleared = {
                 vin: '',
                 customer_name: '',
@@ -95,7 +91,6 @@ class CreateAppointmentForm extends React.Component {
     }
     handleChangeTechnician(event) {
         const value = event.target.value;
-        console.log(value)
         this.setState({ technician: value });
     }
     

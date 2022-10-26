@@ -60,7 +60,6 @@ export default class SalesRecordForm extends React.Component {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       const newRecord = await response.json();
-      console.log(newRecord)
 
       this.setState({
         auto: "",

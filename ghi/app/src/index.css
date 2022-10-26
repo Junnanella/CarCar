@@ -18,3 +18,8 @@ code {
   height: auto;
 }
 
+img.mainpageImage {
+  max-width: 40rem;
+  text-align: center;
+  margin: .5rem auto 2rem auto;
+}
